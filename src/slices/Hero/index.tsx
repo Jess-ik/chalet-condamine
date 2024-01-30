@@ -5,7 +5,7 @@ import { JSXMapSerializer, PrismicRichText, SliceComponentProps } from "@prismic
 // Rich text styling
 const components: JSXMapSerializer = {
 	heading2: ({ children }) => <h2 className="text-2xl uppercase tracking-wider">{children}</h2>,
-	heading3: ({ children }) => <h3 className=" max-w-5xl mx-auto font-heading text-8xl leading-[6rem] font-light">{children}</h3>,
+	heading3: ({ children }) => <h3 className="font-heading text-8xl leading-[6rem] font-light">{children}</h3>,
 	paragraph: ({ children }) => <p className="py-8 text-3xl font-extralight  ">{children}</p>,
 };
 
@@ -27,7 +27,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
 				backgroundImage: `url(${backgroundImg})`,
 			}}
 			className="h-screen bg-cover flex justify-center items-center">
-			<div className="mx-auto w-full max-w-6xl text-center flex flex-col gap-8 ">
+			<div className="mx-auto w-full max-w-4xl text-center flex flex-col gap-8 ">
 				<PrismicRichText field={slice.primary.heading2} components={components} />
 				<PrismicRichText field={slice.primary.heading3} components={components} />
 				<PrismicRichText field={slice.primary.body} components={components} />

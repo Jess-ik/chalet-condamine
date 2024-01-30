@@ -4,7 +4,56 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HomeDocumentDataSlicesSlice = HeroSlice | LandingSlice;
+/**
+ * Content for Equipement documents
+ */
+interface EquipementsDocumentData {
+  /**
+   * Icon field in *Equipement*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: equipements.icon
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  icon: prismic.SelectField<"1" | "2">;
+
+  /**
+   * Equipement field in *Equipement*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: equipements.equipement
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  equipement: prismic.KeyTextField;
+}
+
+/**
+ * Equipement document from Prismic
+ *
+ * - **API ID**: `equipements`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type EquipementsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<EquipementsDocumentData>,
+    "equipements",
+    Lang
+  >;
+
+type HomeDocumentDataSlicesSlice =
+  | EquipementsSlice
+  | GallerySlice
+  | TextImageSlice
+  | SectionHeadSlice
+  | HeroSlice
+  | LandingSlice;
 
 /**
  * Content for Home documents
@@ -202,7 +251,115 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = HomeDocument | SettingsDocument;
+export type AllDocumentTypes =
+  | EquipementsDocument
+  | HomeDocument
+  | SettingsDocument;
+
+/**
+ * Primary content in *Equipements → Primary*
+ */
+export interface EquipementsSliceDefaultPrimary {
+  /**
+   * Heading field in *Equipements → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: equipements.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+}
+
+/**
+ * Primary content in *Equipements → Items*
+ */
+export interface EquipementsSliceDefaultItem {
+  /**
+   * Equipement field in *Equipements → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: equipements.items[].equipement
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  equipement: prismic.ContentRelationshipField<"equipements">;
+}
+
+/**
+ * Default variation for Equipements Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type EquipementsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<EquipementsSliceDefaultPrimary>,
+  Simplify<EquipementsSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Equipements*
+ */
+type EquipementsSliceVariation = EquipementsSliceDefault;
+
+/**
+ * Equipements Shared Slice
+ *
+ * - **API ID**: `equipements`
+ * - **Description**: Equipements
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type EquipementsSlice = prismic.SharedSlice<
+  "equipements",
+  EquipementsSliceVariation
+>;
+
+/**
+ * Primary content in *Gallery → Items*
+ */
+export interface GallerySliceDefaultItem {
+  /**
+   * Image field in *Gallery → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.items[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for Gallery Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GallerySliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  Simplify<GallerySliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Gallery*
+ */
+type GallerySliceVariation = GallerySliceDefault;
+
+/**
+ * Gallery Shared Slice
+ *
+ * - **API ID**: `gallery`
+ * - **Description**: Gallery
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GallerySlice = prismic.SharedSlice<
+  "gallery",
+  GallerySliceVariation
+>;
 
 /**
  * Primary content in *Hero → Primary*
@@ -431,6 +588,99 @@ export type SectionHeadSlice = prismic.SharedSlice<
   SectionHeadSliceVariation
 >;
 
+/**
+ * Primary content in *TextImage → Primary*
+ */
+export interface TextImageSliceDefaultPrimary {
+  /**
+   * Image field in *TextImage → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_image.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Body field in *TextImage → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_image.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+}
+
+/**
+ * Image Left variation for TextImage Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextImageSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TextImageSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Primary content in *TextImage → Primary*
+ */
+export interface TextImageSliceImageRightPrimary {
+  /**
+   * Body field in *TextImage → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_image.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+
+  /**
+   * image field in *TextImage → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_image.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+}
+
+/**
+ * Image Right variation for TextImage Slice
+ *
+ * - **API ID**: `imageRight`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextImageSliceImageRight = prismic.SharedSliceVariation<
+  "imageRight",
+  Simplify<TextImageSliceImageRightPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *TextImage*
+ */
+type TextImageSliceVariation = TextImageSliceDefault | TextImageSliceImageRight;
+
+/**
+ * TextImage Shared Slice
+ *
+ * - **API ID**: `text_image`
+ * - **Description**: TextImage
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TextImageSlice = prismic.SharedSlice<
+  "text_image",
+  TextImageSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -441,6 +691,8 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      EquipementsDocument,
+      EquipementsDocumentData,
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
@@ -449,6 +701,15 @@ declare module "@prismicio/client" {
       SettingsDocumentDataNavigationItem,
       SettingsDocumentDataCtaItem,
       AllDocumentTypes,
+      EquipementsSlice,
+      EquipementsSliceDefaultPrimary,
+      EquipementsSliceDefaultItem,
+      EquipementsSliceVariation,
+      EquipementsSliceDefault,
+      GallerySlice,
+      GallerySliceDefaultItem,
+      GallerySliceVariation,
+      GallerySliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceDefaultItem,
@@ -462,6 +723,12 @@ declare module "@prismicio/client" {
       SectionHeadSliceDefaultPrimary,
       SectionHeadSliceVariation,
       SectionHeadSliceDefault,
+      TextImageSlice,
+      TextImageSliceDefaultPrimary,
+      TextImageSliceImageRightPrimary,
+      TextImageSliceVariation,
+      TextImageSliceDefault,
+      TextImageSliceImageRight,
     };
   }
 }

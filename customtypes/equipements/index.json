@@ -1,0 +1,32 @@
+{
+  "id": "equipements",
+  "label": "Equipement",
+  "format": "custom",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "icon": {
+        "type": "Select",
+        "config": {
+          "label": "Icon",
+          "placeholder": "",
+          "options": ["1", "2"]
+        }
+      },
+      "equipement": {
+        "type": "Text",
+        "config": {
+          "label": "Equipement",
+          "placeholder": ""
+        }
+      }
+    }
+  }
+}

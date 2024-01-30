@@ -27,7 +27,7 @@ export default async function Header() {
 						))}
 						{/*  CTA buttons */}
 						{settings.data.cta.map(({ button_link, button_text }) => (
-							<Button field={button_link} key={button_text}>
+							<Button field={button_link} key={button_text} className="bg-white">
 								{button_text}
 							</Button>
 						))}
