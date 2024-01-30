@@ -386,6 +386,51 @@ export type LandingSlice = prismic.SharedSlice<
   LandingSliceVariation
 >;
 
+/**
+ * Primary content in *SectionHead → Primary*
+ */
+export interface SectionHeadSliceDefaultPrimary {
+  /**
+   * Heading field in *SectionHead → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section_head.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+}
+
+/**
+ * Default variation for SectionHead Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SectionHeadSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<SectionHeadSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *SectionHead*
+ */
+type SectionHeadSliceVariation = SectionHeadSliceDefault;
+
+/**
+ * SectionHead Shared Slice
+ *
+ * - **API ID**: `section_head`
+ * - **Description**: SectionHead
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SectionHeadSlice = prismic.SharedSlice<
+  "section_head",
+  SectionHeadSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -413,6 +458,10 @@ declare module "@prismicio/client" {
       LandingSliceDefaultPrimary,
       LandingSliceVariation,
       LandingSliceDefault,
+      SectionHeadSlice,
+      SectionHeadSliceDefaultPrimary,
+      SectionHeadSliceVariation,
+      SectionHeadSliceDefault,
     };
   }
 }
