@@ -1,8 +1,20 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Jost, Cormorant } from "next/font/google";
 import "./globals.css";
+import clsx from "clsx";
 
-const inter = Inter({ subsets: ["latin"] });
+
+const cormorant = Cormorant({
+	subsets: ['latin'],
+  variable: '--font-cormorant',
+	display: 'swap',
+})
+
+const jost = Jost({
+	subsets: ['latin'],
+  variable: '--font-jost',
+	display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +27,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={`${jost.variable} ${cormorant.variable}`}>
+      <body >{children}</body>
     </html>
   );
 }
