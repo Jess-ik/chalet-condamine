@@ -21,7 +21,7 @@ const Landing = ({ slice }: LandingProps): JSX.Element => {
 					
 						<PrismicRichText field={slice.primary.heading} components={components} />
 						<PrismicRichText field={slice.primary.intro} components={components} />
-						<Button field={slice.primary.button_link} className="mt-6">{slice.primary.button_text}</Button>
+						<Button field={slice.primary.button_link} className="mt-6 bg-white">{slice.primary.button_text}</Button>
 					
 				</div>
 				<div className="h-sreen">

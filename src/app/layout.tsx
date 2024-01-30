@@ -26,7 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
 	const settings = await client.getSingle("settings");
 
 	return {
-		title: settings.data.site_title || "Chalet Condamine",
+		title: settings.data.site_title || "Chalet Condamin",
 		description: settings.data.meta_description || "Découvrez l'authenticité de Vallouise et reservez votre séjour dans notre appartement de 50m2 avec jardin et voûtes d'origine.",
 		openGraph: {
 			images: [settings.data.og_image.url || ""],
