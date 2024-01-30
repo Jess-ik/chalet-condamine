@@ -6,18 +6,25 @@
   "status": true,
   "json": {
     "Main": {
-      "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
-        "config": {
-          "choices": {}
-        }
-      },
       "page_title": {
         "type": "Text",
         "config": {
           "label": "Page Title",
           "placeholder": ""
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "hero": {
+              "type": "SharedSlice"
+            },
+            "landing": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },

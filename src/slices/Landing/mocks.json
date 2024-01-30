@@ -1,0 +1,70 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Valouise, Authentique",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"intro": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Laissez-vous séduire par une escapade inoubliable",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"image": {
+				"origin": {
+					"id": "k5579Jnq7sk",
+					"url": "https://images.unsplash.com/photo-1577138565420-9780b78b0ee1?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwzfHxjaGFsZXR8ZW58MHx8fHwxNzA2NjAzNzk2fDA&ixlib=rb-4.0.3&q=85",
+					"width": 3941,
+					"height": 4925
+				},
+				"url": "https://images.unsplash.com/photo-1577138565420-9780b78b0ee1?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwzfHxjaGFsZXR8ZW58MHx8fHwxNzA2NjAzNzk2fDA&ixlib=rb-4.0.3&q=85",
+				"width": 3941,
+				"height": 4925,
+				"edit": {
+					"background": "transparent",
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					}
+				},
+				"credits": null,
+				"alt": "snow covered house and trees during daytime",
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"button_link": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://twitter.com"
+				}
+			},
+			"button_text": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Découvrir"
+			}
+		},
+		"items": []
+	}
+]
