@@ -4,49 +4,6 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-/**
- * Content for Equipement documents
- */
-interface EquipementsDocumentData {
-  /**
-   * Icon field in *Equipement*
-   *
-   * - **Field Type**: Select
-   * - **Placeholder**: *None*
-   * - **API ID Path**: equipements.icon
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#select
-   */
-  icon: prismic.SelectField<"1" | "2">;
-
-  /**
-   * Equipement field in *Equipement*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: equipements.equipement
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  equipement: prismic.KeyTextField;
-}
-
-/**
- * Equipement document from Prismic
- *
- * - **API ID**: `equipements`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/custom-types
- *
- * @typeParam Lang - Language API ID of the document.
- */
-export type EquipementsDocument<Lang extends string = string> =
-  prismic.PrismicDocumentWithUID<
-    Simplify<EquipementsDocumentData>,
-    "equipements",
-    Lang
-  >;
-
 type HomeDocumentDataSlicesSlice =
   | EquipementsSlice
   | GallerySlice
@@ -251,17 +208,14 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes =
-  | EquipementsDocument
-  | HomeDocument
-  | SettingsDocument;
+export type AllDocumentTypes = HomeDocument | SettingsDocument;
 
 /**
- * Primary content in *Equipements → Primary*
+ * Primary content in *Features → Primary*
  */
 export interface EquipementsSliceDefaultPrimary {
   /**
-   * Heading field in *Equipements → Primary*
+   * Heading field in *Features → Primary*
    *
    * - **Field Type**: Title
    * - **Placeholder**: *None*
@@ -272,22 +226,32 @@ export interface EquipementsSliceDefaultPrimary {
 }
 
 /**
- * Primary content in *Equipements → Items*
+ * Primary content in *Features → Items*
  */
 export interface EquipementsSliceDefaultItem {
   /**
-   * Equipement field in *Equipements → Items*
+   * Service field in *Features → Items*
    *
-   * - **Field Type**: Content Relationship
+   * - **Field Type**: Select
    * - **Placeholder**: *None*
-   * - **API ID Path**: equipements.items[].equipement
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **API ID Path**: equipements.items[].feature
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
-  equipement: prismic.ContentRelationshipField<"equipements">;
+  feature: prismic.SelectField<"1" | "2">;
+
+  /**
+   * Label field in *Features → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: equipements.items[].label
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  label: prismic.RichTextField;
 }
 
 /**
- * Default variation for Equipements Slice
+ * Services variation for Features Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
@@ -300,12 +264,111 @@ export type EquipementsSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
- * Slice variation for *Equipements*
+ * Primary content in *Features → Primary*
  */
-type EquipementsSliceVariation = EquipementsSliceDefault;
+export interface EquipementsSliceEquipementsPrimary {
+  /**
+   * Heading field in *Features → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: equipements.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+}
 
 /**
- * Equipements Shared Slice
+ * Primary content in *Features → Items*
+ */
+export interface EquipementsSliceEquipementsItem {
+  /**
+   * Equipement field in *Features → Items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: equipements.items[].feature
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  feature: prismic.SelectField<"Aspirateur" | "Four">;
+}
+
+/**
+ * Equipements variation for Features Slice
+ *
+ * - **API ID**: `equipements`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type EquipementsSliceEquipements = prismic.SharedSliceVariation<
+  "equipements",
+  Simplify<EquipementsSliceEquipementsPrimary>,
+  Simplify<EquipementsSliceEquipementsItem>
+>;
+
+/**
+ * Primary content in *Features → Primary*
+ */
+export interface EquipementsSliceAppartementPrimary {
+  /**
+   * Heading field in *Features → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: equipements.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+}
+
+/**
+ * Primary content in *Features → Items*
+ */
+export interface EquipementsSliceAppartementItem {
+  /**
+   * Appartement field in *Features → Items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: equipements.items[].feature
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  feature: prismic.SelectField<"1" | "2">;
+
+  /**
+   * Label field in *Features → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: equipements.items[].label
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  label: prismic.RichTextField;
+}
+
+/**
+ * Appartement variation for Features Slice
+ *
+ * - **API ID**: `appartement`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type EquipementsSliceAppartement = prismic.SharedSliceVariation<
+  "appartement",
+  Simplify<EquipementsSliceAppartementPrimary>,
+  Simplify<EquipementsSliceAppartementItem>
+>;
+
+/**
+ * Slice variation for *Features*
+ */
+type EquipementsSliceVariation =
+  | EquipementsSliceDefault
+  | EquipementsSliceEquipements
+  | EquipementsSliceAppartement;
+
+/**
+ * Features Shared Slice
  *
  * - **API ID**: `equipements`
  * - **Description**: Equipements
@@ -691,8 +754,6 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
-      EquipementsDocument,
-      EquipementsDocumentData,
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
@@ -704,8 +765,14 @@ declare module "@prismicio/client" {
       EquipementsSlice,
       EquipementsSliceDefaultPrimary,
       EquipementsSliceDefaultItem,
+      EquipementsSliceEquipementsPrimary,
+      EquipementsSliceEquipementsItem,
+      EquipementsSliceAppartementPrimary,
+      EquipementsSliceAppartementItem,
       EquipementsSliceVariation,
       EquipementsSliceDefault,
+      EquipementsSliceEquipements,
+      EquipementsSliceAppartement,
       GallerySlice,
       GallerySliceDefaultItem,
       GallerySliceVariation,

@@ -22,7 +22,7 @@ const TextImage = ({ slice }: TextImageProps): JSX.Element => {
 			<div className="grid grid-cols-2 gap-20 items-center">
       <PrismicNextImage field={slice.primary.image} className={clsx(slice.variation === "imageRight" && "order-2")}/>
 				<PrismicRichText field={slice.primary.body} components={components} />
-			</div>
+      </div>     
 		</section>
 	);
 };
