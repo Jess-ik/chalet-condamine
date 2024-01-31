@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type HomeDocumentDataSlicesSlice =
+  | CtASlice
   | EquipementsSlice
   | GallerySlice
   | TextImageSlice
@@ -209,6 +210,103 @@ export type SettingsDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes = HomeDocument | SettingsDocument;
+
+/**
+ * Primary content in *CtA → Primary*
+ */
+export interface CtASliceDefaultPrimary {
+  /**
+   * Image field in *CtA → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ct_a.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Subhead field in *CtA → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ct_a.primary.subhead
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subhead: prismic.TitleField;
+
+  /**
+   * Heading field in *CtA → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ct_a.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Body field in *CtA → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ct_a.primary.body
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  body: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *CtA → Items*
+ */
+export interface CtASliceDefaultItem {
+  /**
+   * Button Link field in *CtA → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ct_a.items[].button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+
+  /**
+   * Button Text field in *CtA → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ct_a.items[].button_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_text: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for CtA Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CtASliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<CtASliceDefaultPrimary>,
+  Simplify<CtASliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *CtA*
+ */
+type CtASliceVariation = CtASliceDefault;
+
+/**
+ * CtA Shared Slice
+ *
+ * - **API ID**: `ct_a`
+ * - **Description**: CtA
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CtASlice = prismic.SharedSlice<"ct_a", CtASliceVariation>;
 
 /**
  * Primary content in *Features → Primary*
@@ -629,92 +727,9 @@ export type LandingSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
- * Primary content in *Landing → Primary*
- */
-export interface LandingSliceImageLeftPrimary {
-  /**
-   * Image field in *Landing → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: landing.primary.image
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  image: prismic.ImageField<never>;
-
-  /**
-   * subhead field in *Landing → Primary*
-   *
-   * - **Field Type**: Title
-   * - **Placeholder**: *None*
-   * - **API ID Path**: landing.primary.heading
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  heading: prismic.TitleField;
-
-  /**
-   * Heading field in *Landing → Primary*
-   *
-   * - **Field Type**: Title
-   * - **Placeholder**: *None*
-   * - **API ID Path**: landing.primary.subhead
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  subhead: prismic.TitleField;
-
-  /**
-   * Intro field in *Landing → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: landing.primary.intro
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  intro: prismic.RichTextField;
-}
-
-/**
- * Primary content in *Landing → Items*
- */
-export interface LandingSliceImageLeftItem {
-  /**
-   * Button Link field in *Landing → Items*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: landing.items[].button_link
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  button_link: prismic.LinkField;
-
-  /**
-   * Button Text field in *Landing → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: landing.items[].button_text
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  button_text: prismic.KeyTextField;
-}
-
-/**
- * Image left variation for Landing Slice
- *
- * - **API ID**: `imageLeft`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type LandingSliceImageLeft = prismic.SharedSliceVariation<
-  "imageLeft",
-  Simplify<LandingSliceImageLeftPrimary>,
-  Simplify<LandingSliceImageLeftItem>
->;
-
-/**
  * Slice variation for *Landing*
  */
-type LandingSliceVariation = LandingSliceDefault | LandingSliceImageLeft;
+type LandingSliceVariation = LandingSliceDefault;
 
 /**
  * Landing Shared Slice
@@ -884,6 +899,11 @@ declare module "@prismicio/client" {
       SettingsDocumentDataNavigationItem,
       SettingsDocumentDataCtaItem,
       AllDocumentTypes,
+      CtASlice,
+      CtASliceDefaultPrimary,
+      CtASliceDefaultItem,
+      CtASliceVariation,
+      CtASliceDefault,
       EquipementsSlice,
       EquipementsSliceDefaultPrimary,
       EquipementsSliceDefaultItem,
@@ -906,11 +926,8 @@ declare module "@prismicio/client" {
       HeroSliceDefault,
       LandingSlice,
       LandingSliceDefaultPrimary,
-      LandingSliceImageLeftPrimary,
-      LandingSliceImageLeftItem,
       LandingSliceVariation,
       LandingSliceDefault,
-      LandingSliceImageLeft,
       SectionHeadSlice,
       SectionHeadSliceDefaultPrimary,
       SectionHeadSliceVariation,

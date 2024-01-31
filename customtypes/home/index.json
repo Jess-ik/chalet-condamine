@@ -18,6 +18,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "ct_a": {
+              "type": "SharedSlice"
+            },
             "equipements": {
               "type": "SharedSlice"
             },
