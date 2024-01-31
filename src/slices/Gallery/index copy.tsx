@@ -9,7 +9,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import { useState } from "react";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
+import Modal from "react-modal";
+
+
 
 /**
  * Props for `Gallery`.
@@ -21,8 +23,17 @@ export type GalleryProps = SliceComponentProps<Content.GallerySlice>;
  */
 const Gallery = ({ slice }: GalleryProps): JSX.Element => {
 	//Modal setup
-	const { isOpen, onOpen, onOpenChange } = useDisclosure();
+	const [modalIsOpen, setModalIsOpen] = useState(false);
 	const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+	const openModal = (index: number) => {
+		setSelectedImageIndex(index);
+		setModalIsOpen(true);
+	};
+
+	const closeModal = () => {
+		setModalIsOpen(false);
+	};
 
 	const nextImage = () => {
 		setSelectedImageIndex((prevIndex) => (prevIndex + 1) % slice.items.length);
@@ -47,49 +58,41 @@ const Gallery = ({ slice }: GalleryProps): JSX.Element => {
 		variableWidth: true,
 	};
 
+	//Modal settings
+	const customStyles = {
+		content: {
+		  top: '50%',
+		  left: '50%',
+		  right: 'auto',
+		  bottom: 'auto',
+		  marginRight: '-50%',
+			transform: 'translate(-50%, -50%)',
+	
+		},
+	  };
 	return (
 		<>
 			<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="py-10">
 				<Slider {...settings}>
-					{/* Images for the gallery */}
+					{/*  Images for the gallery */}
 					{slice.items.map((item, index) => (
-						<div key={index} className="px-4 cursor-pointer">
-							<Button
-								onPress={() => {
-									setSelectedImageIndex(index);
-									onOpen();
-								}}
-								key={index}
-								className="h-[450px] w-[600px] rounded-none px-0">
-								<PrismicNextImage field={item.image} className="h-[450px] w-[600px] object-cover" />
-							</Button>
+						<div key={index} className="px-4 cursor-pointer" onClick={() => openModal(index)}>
+							<PrismicNextImage field={item.image} className="h-[450px] w-[600px] object-cover" />
 						</div>
 					))}
 				</Slider>
 			</section>
 
 			{/* Modal */}
-			<Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="blur" size="5xl">
-				<ModalContent>
-					{(onClose) => (
-						<>
-							<ModalHeader className="flex flex-col gap-1">Galerie du Chalet Condamin</ModalHeader>
-							<ModalBody>
-								<PrismicNextImage field={slice.items[selectedImageIndex].image} className="h-[50vh] object-contain" />
-							</ModalBody>
-							<ModalFooter className="justify-center gap-8">
-								
-								<Button className="text-slate-500 border rounded-full bg-transparent" onPress={prevImage}>
-									Prev
-								</Button>
-								<Button className="text-slate-500 border rounded-full bg-transparent" onPress={nextImage}>
-									Next
-									</Button>
-									
-							</ModalFooter>
-						</>
-					)}
-				</ModalContent>
+			<Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Image Modal" style={customStyles} className="">
+				
+				
+				<button onClick={closeModal}>Close</button>
+				<div className="flex flex-row gap-4">
+				<button onClick={prevImage}>Previous</button>
+					<PrismicNextImage field={slice.items[selectedImageIndex].image} className="h-[80vh] object-contain" />
+					<button onClick={nextImage}>Next</button>
+				</div>
 			</Modal>
 		</>
 	);
