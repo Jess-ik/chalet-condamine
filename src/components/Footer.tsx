@@ -1,6 +1,14 @@
 import { createClient } from "@/prismicio";
 import { PrismicNextLink } from "@prismicio/next";
 import Link from "next/link";
+import Logo from "./Logo";
+import Button from "./Button";
+import { JSXMapSerializer, PrismicRichText } from "@prismicio/react";
+
+// Rich text styling
+const components: JSXMapSerializer = {
+	heading4: ({ children }) => <h4 className="max-w-2xl  font-heading text-3xl leading-[6rem] font-light">{children}</h4>,
+};
 
 export default async function Footer() {
 	// fetch data
@@ -8,25 +16,55 @@ export default async function Footer() {
 	const settings = await client.getSingle("settings");
 
 	return (
-		<footer>
-			{settings.data.site_title}
-            <p>Développement : <Link href="https://jess-louvel.com" target="_blank">Jessica Louvel</Link> - {new Date().getFullYear()}</p>
-			<nav>
-				<ul>
-					{/* Navigation items */}
-					{settings.data.navigation.map(({ link, link_label }) => (
-						<PrismicNextLink field={link} key={link_label}>
-							{link_label}
-						</PrismicNextLink>
-					))}
-					{/*  CTA buttons */}
-					{settings.data.cta.map(({ button_link, button_text }) => (
-						<PrismicNextLink field={button_link} key={button_text}>
-							{button_text}
-						</PrismicNextLink>
-					))}
-				</ul>
-			</nav>
+		<footer className="w-full pb-7  text-[#1F222E]">
+			<div className=" grid grid-cols-3 justify-between  ">
+				{/*  Contact info */}
+				{settings.data.contact.map(({ heading, name, adress, mail, tel }) => (
+					<div key={name} className=" col-span-1 flex flex-col justify-center max-w-4xl mx-auto py-6">
+						<PrismicRichText field={heading} components={components} />
+
+						<p className="text-l tracking-wide leading-7 font-extralight pb-6 ">
+							{name}
+							<br />
+							{adress} <br />
+							{mail} <br />
+							{tel}
+						</p>
+					</div>
+				))}
+
+				<div className="col-span-2 bg-slate-300">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d11316.143687065312!2d6.4589136!3d44.8412018!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDTCsDUwJzI5LjAiTiA2wrAyNyc1NS45IkU!5e0!3m2!1sen!2sfr!4v1706698081040!5m2!1sen!2sfr" width="100%" height="100%" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+					
+				</div>
+
+				{/* <div dangerouslySetInnerHTML={{ __html: settings.data.map.html }} /> */}
+			</div>
+
+			<div className="px-20 pt-7 flex gap-4 items-center justify-between flex-col sm:flex-row">
+				<Link href="/">
+					<Logo fillColor="#1F222E" />
+				</Link>
+				<Link href="https://jess-louvel.com" className="text-sm font-light tracking-wide">
+					Developed with ♥️ by <strong>Jessica Louvel</strong> 
+				</Link>
+				<nav>
+					<ul className="flex gap-6 items-center">
+						{/* Navigation items */}
+						{settings.data.navigation.map(({ link, link_label }) => (
+							<PrismicNextLink field={link} key={link_label} className="px-3">
+								{link_label}
+							</PrismicNextLink>
+						))}
+						{/*  CTA buttons */}
+						{settings.data.cta.map(({ button_link, button_text }) => (
+							<Button field={button_link} key={button_text} className="bg-[#1F222E] text-white">
+								{button_text}
+							</Button>
+						))}
+					</ul>
+				</nav>
+			</div>
 		</footer>
 	);
 }

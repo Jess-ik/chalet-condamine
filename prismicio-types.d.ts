@@ -134,6 +134,61 @@ export interface SettingsDocumentDataCtaItem {
 }
 
 /**
+ * Item in *Settings → Contact*
+ */
+export interface SettingsDocumentDataContactItem {
+  /**
+   * Heading field in *Settings → Contact*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.contact[].heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Name field in *Settings → Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.contact[].name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Adress field in *Settings → Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.contact[].adress
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  adress: prismic.KeyTextField;
+
+  /**
+   * mail field in *Settings → Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.contact[].mail
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  mail: prismic.KeyTextField;
+
+  /**
+   * tel field in *Settings → Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.contact[].tel
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tel: prismic.KeyTextField;
+}
+
+/**
  * Content for Settings documents
  */
 interface SettingsDocumentData {
@@ -191,6 +246,17 @@ interface SettingsDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#group
    */
   cta: prismic.GroupField<Simplify<SettingsDocumentDataCtaItem>>;
+
+  /**
+   * Contact field in *Settings*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: settings.contact[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  contact: prismic.GroupField<Simplify<SettingsDocumentDataContactItem>>;
 }
 
 /**
@@ -898,6 +964,7 @@ declare module "@prismicio/client" {
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
       SettingsDocumentDataCtaItem,
+      SettingsDocumentDataContactItem,
       AllDocumentTypes,
       CtASlice,
       CtASliceDefaultPrimary,

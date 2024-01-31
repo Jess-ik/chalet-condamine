@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { createClient } from "@/prismicio";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Providers } from "./providers";
 
 const cormorant = Cormorant({
 	subsets: ["latin"],
@@ -42,9 +43,11 @@ export default function RootLayout({
 	return (
 		<html lang="en" className={clsx(jost.variable, cormorant.variable)}>
 			<body className="font-body">
+				<Providers>
 				<Header />
 				{children}
-				<Footer />
+					<Footer />
+					</Providers>
 			</body>
 		</html>
 	);

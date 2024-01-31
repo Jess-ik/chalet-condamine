@@ -11,11 +11,10 @@ export default async function Header() {
 
 	return (
 		<header className="w-full py-7 px-20  bg-[#1F222E] text-white">
-            <div className="flex gap-4 items-center justify-between flex-col sm:flex-row">
-                <Link href="/">
-                    <Logo />
-                </Link>
-				
+			<div className="flex gap-4 items-center justify-between flex-col sm:flex-row">
+				<Link href="/">
+					<Logo fillColor="#ffffff"/>
+				</Link>
 
 				<nav>
 					<ul className="flex gap-6 items-center">

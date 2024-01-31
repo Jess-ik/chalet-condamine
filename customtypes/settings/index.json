@@ -73,6 +73,51 @@
             }
           }
         }
+      },
+      "contact": {
+        "type": "Group",
+        "config": {
+          "label": "Contact",
+          "fields": {
+            "heading": {
+              "type": "StructuredText",
+              "config": {
+                "label": "Heading",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "single": "heading4"
+              }
+            },
+            "name": {
+              "type": "Text",
+              "config": {
+                "label": "Name",
+                "placeholder": ""
+              }
+            },
+            "adress": {
+              "type": "Text",
+              "config": {
+                "label": "Adress",
+                "placeholder": ""
+              }
+            },
+            "mail": {
+              "type": "Text",
+              "config": {
+                "label": "mail",
+                "placeholder": ""
+              }
+            },
+            "tel": {
+              "type": "Text",
+              "config": {
+                "label": "tel",
+                "placeholder": ""
+              }
+            }
+          }
+        }
       }
     }
   }
