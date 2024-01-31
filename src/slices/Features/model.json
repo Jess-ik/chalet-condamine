@@ -29,8 +29,15 @@
             "label": "Service",
             "placeholder": "",
             "options": [
-              "1",
-              "2"
+              "Wifi",
+              "Bebe",
+              "Parking",
+              "Entree",
+              "LocalSki",
+              "TourismeInfo",
+              "Draps",
+              "Menage",
+              "Animaux"
             ]
           }
         },
@@ -71,8 +78,25 @@
             "placeholder": "",
             "options": [
               "Aspirateur",
-              "Four"
+              "Four",
+              "Barbecue",
+              "TV",
+              "LaveLinge",
+              "SecheCheveux",
+              "Repassage",
+              "LaveVaisselle",
+              "MicroOndes",
+              "Raclette"
             ]
+          }
+        },
+        "label": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Label",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em"
           }
         }
       }
@@ -102,8 +126,13 @@
             "label": "Appartement",
             "placeholder": "",
             "options": [
-              "1",
-              "2"
+              "Surface",
+              "Capacite",
+              "ChambreDouble",
+              "ChambreSuperpose",
+              "SDB",
+              "WC",
+              "Terrasse"
             ]
           }
         },

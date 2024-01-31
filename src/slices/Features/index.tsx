@@ -5,7 +5,8 @@ import { getIconComponent } from "@/components/Icons";
 
 // Rich text styling
 const components: JSXMapSerializer = {
-	heading3: ({ children }) => <h3 className="font-heading text-[4rem] leading-[6rem] font-extralight">{children}</h3>,
+	heading3: ({ children }) => <h3 className="pb-6 font-heading text-[4rem] leading-[6rem] font-extralight">{children}</h3>,
+	paragraph: ({children}) => <p className="py-8 pr-[50px] text-xl font-light text-slate-700">{children}</p>
 };
 
 /**
@@ -18,15 +19,15 @@ export type EquipementsProps = SliceComponentProps<Content.EquipementsSlice>;
  */
 const Equipements = async ({ slice }: EquipementsProps): Promise<JSX.Element> => {
 	return (
-		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="px-60">
+		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="px-60 py-12">
 			<PrismicRichText field={slice.primary.heading} components={components} />
-			<ul className="grid grid-cols-3 justify-between border">
+			<ul className="grid grid-cols-4 justify-between px-6">
 				{slice.items.map(
 					(item, index) =>
 						item && (
-							<li key={index} className="flex items-center gap-4 py-4">
+							<li key={index} className="flex items-center gap-4 py-4 ">
 								{item.feature && <i>{getIconComponent(item.feature)}</i>}
-								<p className="py-8 text-2xl font-light  ">{item.feature}</p>
+								<PrismicRichText field={item.label} components={components} />
 							</li>
 						)
 				)}

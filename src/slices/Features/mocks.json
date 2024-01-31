@@ -37,7 +37,7 @@
 						"feature",
 						{
 							"__TYPE__": "FieldContent",
-							"value": "2",
+							"value": "Bebe",
 							"type": "Select"
 						}
 					]
@@ -69,8 +69,22 @@
 						"feature",
 						{
 							"__TYPE__": "FieldContent",
-							"value": "Four",
+							"value": "Raclette",
 							"type": "Select"
+						}
+					],
+					[
+						"label",
+						{
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "paragraph",
+									"content": {
+										"text": "Ex cillum labore commodo irure velit proident amet laboris in ut reprehenderit enim do. Enim Lorem ipsum culpa enim minim id tempor labore nulla aliquip tempor et incididunt. Aliquip voluptate sit velit minim adipisicing excepteur consequat incididunt."
+									}
+								}
+							]
 						}
 					]
 				]
@@ -115,7 +129,7 @@
 						"feature",
 						{
 							"__TYPE__": "FieldContent",
-							"value": "2",
+							"value": "ChambreDouble",
 							"type": "Select"
 						}
 					]

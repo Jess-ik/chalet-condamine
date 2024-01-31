@@ -237,7 +237,17 @@ export interface EquipementsSliceDefaultItem {
    * - **API ID Path**: equipements.items[].feature
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  feature: prismic.SelectField<"1" | "2">;
+  feature: prismic.SelectField<
+    | "Wifi"
+    | "Bebe"
+    | "Parking"
+    | "Entree"
+    | "LocalSki"
+    | "TourismeInfo"
+    | "Draps"
+    | "Menage"
+    | "Animaux"
+  >;
 
   /**
    * Label field in *Features → Items*
@@ -290,7 +300,28 @@ export interface EquipementsSliceEquipementsItem {
    * - **API ID Path**: equipements.items[].feature
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  feature: prismic.SelectField<"Aspirateur" | "Four">;
+  feature: prismic.SelectField<
+    | "Aspirateur"
+    | "Four"
+    | "Barbecue"
+    | "TV"
+    | "LaveLinge"
+    | "SecheCheveux"
+    | "Repassage"
+    | "LaveVaisselle"
+    | "MicroOndes"
+    | "Raclette"
+  >;
+
+  /**
+   * Label field in *Features → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: equipements.items[].label
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  label: prismic.RichTextField;
 }
 
 /**
@@ -333,7 +364,15 @@ export interface EquipementsSliceAppartementItem {
    * - **API ID Path**: equipements.items[].feature
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  feature: prismic.SelectField<"1" | "2">;
+  feature: prismic.SelectField<
+    | "Surface"
+    | "Capacite"
+    | "ChambreDouble"
+    | "ChambreSuperpose"
+    | "SDB"
+    | "WC"
+    | "Terrasse"
+  >;
 
   /**
    * Label field in *Features → Items*
@@ -590,9 +629,92 @@ export type LandingSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Landing → Primary*
+ */
+export interface LandingSliceImageLeftPrimary {
+  /**
+   * Image field in *Landing → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: landing.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * subhead field in *Landing → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: landing.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Heading field in *Landing → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: landing.primary.subhead
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subhead: prismic.TitleField;
+
+  /**
+   * Intro field in *Landing → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: landing.primary.intro
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  intro: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *Landing → Items*
+ */
+export interface LandingSliceImageLeftItem {
+  /**
+   * Button Link field in *Landing → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: landing.items[].button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+
+  /**
+   * Button Text field in *Landing → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: landing.items[].button_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_text: prismic.KeyTextField;
+}
+
+/**
+ * Image left variation for Landing Slice
+ *
+ * - **API ID**: `imageLeft`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type LandingSliceImageLeft = prismic.SharedSliceVariation<
+  "imageLeft",
+  Simplify<LandingSliceImageLeftPrimary>,
+  Simplify<LandingSliceImageLeftItem>
+>;
+
+/**
  * Slice variation for *Landing*
  */
-type LandingSliceVariation = LandingSliceDefault;
+type LandingSliceVariation = LandingSliceDefault | LandingSliceImageLeft;
 
 /**
  * Landing Shared Slice
@@ -784,8 +906,11 @@ declare module "@prismicio/client" {
       HeroSliceDefault,
       LandingSlice,
       LandingSliceDefaultPrimary,
+      LandingSliceImageLeftPrimary,
+      LandingSliceImageLeftItem,
       LandingSliceVariation,
       LandingSliceDefault,
+      LandingSliceImageLeft,
       SectionHeadSlice,
       SectionHeadSliceDefaultPrimary,
       SectionHeadSliceVariation,
