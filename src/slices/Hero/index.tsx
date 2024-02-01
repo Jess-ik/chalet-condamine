@@ -21,6 +21,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
 	const backgroundImg = slice.primary.background.url;
 	return (
 		<section
+		id={slice.primary.anchor_id || undefined}
 			data-slice-type={slice.slice_type}
 			data-slice-variation={slice.variation}
 			style={{

@@ -20,6 +20,13 @@
             "allowTargetBlank": true,
             "single": "heading2"
           }
+        },
+        "anchor_id": {
+          "type": "Text",
+          "config": {
+            "label": "anchor ID",
+            "placeholder": ""
+          }
         }
       },
       "items": {}

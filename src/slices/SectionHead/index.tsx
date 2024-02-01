@@ -16,7 +16,7 @@ export type SectionHeadProps = SliceComponentProps<Content.SectionHeadSlice>;
  */
 const SectionHead = ({ slice }: SectionHeadProps): JSX.Element => {
 	return (
-		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="scroll-section pt-52 pb-24 text-center rounded-t-[50px]">
+		<section id={slice.primary.anchor_id || undefined} data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="scroll-section pt-52 pb-24 text-center rounded-t-[50px]">
 			<PrismicRichText field={slice.primary.heading} components={components}/>
 		</section>
 	);

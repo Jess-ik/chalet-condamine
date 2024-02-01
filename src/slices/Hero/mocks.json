@@ -58,6 +58,11 @@
 						}
 					}
 				]
+			},
+			"anchor_id": {
+				"__TYPE__": "FieldContent",
+				"value": "left",
+				"type": "Text"
 			}
 		},
 		"items": [
