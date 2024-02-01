@@ -49,7 +49,7 @@ const Gallery = ({ slice }: GalleryProps): JSX.Element => {
 
 	return (
 		<>
-			<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="py-10">
+			<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="h-unit-8xl md:h-auto ">
 				<Slider {...settings}>
 					{/* Images for the gallery */}
 					{slice.items.map((item, index) => (
