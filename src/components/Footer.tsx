@@ -58,7 +58,7 @@ export default async function Footer() {
 						))}
 						{/*  CTA buttons */}
 						{settings.data.cta.map(({ button_link, button_text }) => (
-							<Button field={button_link} key={button_text} className="bg-[#1F222E] text-white">
+							<Button field={button_link} key={button_text} className="bg-[#1F222E] text-sm py-2 px-6 text-center text-white">
 								{button_text}
 							</Button>
 						))}

@@ -632,6 +632,16 @@ export type GallerySlice = prismic.SharedSlice<
  */
 export interface HeroSliceDefaultPrimary {
   /**
+   * anchor ID field in *Hero → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.primary.anchor_id
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  anchor_id: prismic.KeyTextField;
+
+  /**
    * Background field in *Hero → Primary*
    *
    * - **Field Type**: Image
@@ -822,6 +832,16 @@ export interface SectionHeadSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   heading: prismic.TitleField;
+
+  /**
+   * anchor ID field in *SectionHead → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section_head.primary.anchor_id
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  anchor_id: prismic.KeyTextField;
 }
 
 /**
