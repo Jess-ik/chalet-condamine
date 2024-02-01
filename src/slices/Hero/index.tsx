@@ -4,9 +4,9 @@ import { JSXMapSerializer, PrismicRichText, SliceComponentProps } from "@prismic
 
 // Rich text styling
 const components: JSXMapSerializer = {
-	heading2: ({ children }) => <h2 className="text-2xl uppercase tracking-wider">{children}</h2>,
-	heading3: ({ children }) => <h3 className="font-heading text-8xl leading-[6rem] font-light">{children}</h3>,
-	paragraph: ({ children }) => <p className="py-8 text-3xl font-extralight  ">{children}</p>,
+	heading2: ({ children }) => <h2 className="text-xl lg:text-2xl uppercase tracking-wider">{children}</h2>,
+	heading3: ({ children }) => <h3 className="max-w-xl lg:max-w-2xl mx-auto font-heading text-7xl lg:text-8xl lg:leading-[6rem] font-light">{children}</h3>,
+	paragraph: ({ children }) => <p className="py-8 text-xl lg:text-2xl font-extralight  ">{children}</p>,
 };
 
 /**
@@ -28,7 +28,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
 				backgroundImage: `url(${backgroundImg})`,
 			}}
 			className="h-screen bg-cover flex justify-center items-center">
-			<div className="mx-auto w-full max-w-4xl text-center flex flex-col gap-8 ">
+			<div className="mx-auto w-full px-10 lg:max-w-4xl text-center flex flex-col gap-8 ">
 				<PrismicRichText field={slice.primary.heading2} components={components} />
 				<PrismicRichText field={slice.primary.heading3} components={components} />
 				<PrismicRichText field={slice.primary.body} components={components} />
