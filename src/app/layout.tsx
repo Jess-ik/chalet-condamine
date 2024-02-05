@@ -41,7 +41,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en" className={clsx(jost.variable, cormorant.variable)}>
+		<html lang="en" className={clsx(jost.variable, cormorant.variable, "scroll-smooth")}>
 			<body className="font-body">
 				<Providers>
 				<Header />
