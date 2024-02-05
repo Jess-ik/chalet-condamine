@@ -9,18 +9,41 @@ import React, { useEffect, useId, useState } from "react";
 import { SettingsDocument } from "../../prismicio-types";
 import { motion } from "framer-motion";
 
+
+const logo = {
+	initial: {
+		opacity: 0,
+		y: -30,
+		filter: "blur(5px)",
+	},
+	animate:{
+		opacity: 1,
+		y: 0,
+		filter: "blur(0px)",
+		transition: {
+			duration: 0.3,
+			ease: "easeOut",
+			delay: 0.08,
+		},
+	},
+};
+
+
+
 const item = {
 	initial: {
 		opacity: 0,
 		y: -30,
+		filter: "blur(5px)",
 	},
 	animate: (index: number) => ({
 		opacity: 1,
 		y: 0,
+		filter: "blur(0px)",
 		transition: {
 			duration: 0.3,
 			ease: "easeOut",
-			delay: 0.08 * index,
+			delay: 0.08 * (index + 1),
 		},
 	}),
 };
@@ -29,10 +52,12 @@ const menuItem = {
 	initial: {
 		opacity: 0,
 		y: -80,
+		filter: "blur(5px)",
 	},
 	animate: (index: number) => ({
 		opacity: 1,
 		y: 0,
+		filter: "blur(0px)",
 		transition: {
 			duration: 0.3,
 			ease: "easeOut",
@@ -66,9 +91,11 @@ export default function Header() {
 	return (
 		<Navbar isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll isBlurred={false} style={navbarStyle} className="py-4 px-4 lg:px-20" maxWidth={"full"}>
 			<NavbarBrand>
+			<motion.div variants={logo} initial="initial" whileInView="animate"  viewport={{ once: true }}>
+
 				<Link href="/">
-					<Logo fillColor="#ffffff" />
-				</Link>
+				<Logo fillColor="#ffffff" />
+				</Link></motion.div>
 			</NavbarBrand>
 
 			{/* Desktop menu */}
