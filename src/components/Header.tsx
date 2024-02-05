@@ -7,12 +7,28 @@ import Logo from "./Logo";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
 import React, { useEffect, useId, useState } from "react";
 import { SettingsDocument } from "../../prismicio-types";
-import { useScroll, motion, useTransform, stagger } from "framer-motion";
+import { motion } from "framer-motion";
 
 const item = {
 	initial: {
 		opacity: 0,
 		y: -30,
+	},
+	animate: (index: number) => ({
+		opacity: 1,
+		y: 0,
+		transition: {
+			duration: 0.3,
+			ease: "easeOut",
+			delay: 0.08 * index,
+		},
+	}),
+};
+
+const menuItem = {
+	initial: {
+		opacity: 0,
+		y: -80,
 	},
 	animate: (index: number) => ({
 		opacity: 1,
@@ -65,7 +81,7 @@ export default function Header() {
 						<>
 							{/* Navigation items */}
 							{settings.data.navigation.map(({ link, link_label }, index) => (
-								<motion.div key={index} variants={item} initial="initial" whileInView="animate" custom={index} viewport={{once: true,}}>
+								<motion.div key={index} variants={item} initial="initial" whileInView="animate" custom={index} viewport={{ once: true }}>
 									<NavbarItem>
 										<PrismicNextLink key={link_label} field={link} className="px-3 text-white">
 											{link_label}
@@ -75,7 +91,7 @@ export default function Header() {
 							))}
 							{/* CTA items */}
 							{settings.data.cta.map(({ button_link, button_text }, index) => (
-								<motion.div key={index} variants={item} initial="initial" whileInView="animate" custom={index} viewport={{ once: true, }}>
+								<motion.div key={index} variants={item} initial="initial" whileInView="animate" custom={index} viewport={{ once: true }}>
 									<NavbarItem key={button_text}>
 										<Button field={button_link} key={button_text} className="bg-white text-sm py-2 px-6 text-center">
 											{button_text}
@@ -94,20 +110,24 @@ export default function Header() {
 				{settings && (
 					<>
 						{/* Navigation items */}
-						{settings.data.navigation.map(({ link, link_label }) => (
-							<NavbarMenuItem key={link_label} onClick={() => setIsMenuOpen(false)}>
-								<PrismicNextLink field={link} className="px-3 text-white">
-									{link_label}
-								</PrismicNextLink>
-							</NavbarMenuItem>
+						{settings.data.navigation.map(({ link, link_label }, index) => (
+							<motion.div key={index} variants={menuItem} initial="initial" whileInView="animate" custom={index} viewport={{ once: true }}>
+								<NavbarMenuItem key={link_label} onClick={() => setIsMenuOpen(false)}>
+									<PrismicNextLink field={link} className="px-3 text-white">
+										{link_label}
+									</PrismicNextLink>
+								</NavbarMenuItem>
+							</motion.div>
 						))}
 						{/* CTA items */}
-						{settings.data.cta.map(({ button_link, button_text }) => (
-							<NavbarMenuItem key={button_text} onClick={() => setIsMenuOpen(false)}>
-								<Button field={button_link} key={button_text} className="bg-white text-sm py-2 px-6 text-center">
-									{button_text}
-								</Button>
-							</NavbarMenuItem>
+						{settings.data.cta.map(({ button_link, button_text }, index) => (
+							<motion.div key={index} variants={menuItem} initial="initial" whileInView="animate" custom={index} viewport={{ once: true }}>
+								<NavbarMenuItem key={button_text} onClick={() => setIsMenuOpen(false)}>
+									<Button field={button_link} key={button_text} className="bg-white text-sm py-2 px-6 text-center">
+										{button_text}
+									</Button>
+								</NavbarMenuItem>
+							</motion.div>
 						))}
 					</>
 				)}
