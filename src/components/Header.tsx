@@ -5,8 +5,25 @@ import Button from "./Button";
 import Link from "next/link";
 import Logo from "./Logo";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useId, useState } from "react";
 import { SettingsDocument } from "../../prismicio-types";
+import { useScroll, motion, useTransform, stagger } from "framer-motion";
+
+const item = {
+	initial: {
+		opacity: 0,
+		y: -30,
+	},
+	animate: (index: number) => ({
+		opacity: 1,
+		y: 0,
+		transition: {
+			duration: 0.3,
+			ease: "easeOut",
+			delay: 0.08 * index,
+		},
+	}),
+};
 
 export default function Header() {
 	// State pour stocker les données
@@ -15,7 +32,7 @@ export default function Header() {
 	// State pour gérer l'état du menu
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-	// Effet pour charger les données au montage du composant
+	// Charger les données au montage du composant
 	useEffect(() => {
 		const fetchData = async () => {
 			const client = createClient();
@@ -24,15 +41,10 @@ export default function Header() {
 		};
 
 		fetchData();
-	}, []); // L'utilisation de la dépendance vide [] assure que cet effet ne s'exécute qu'une fois au montage.
+	}, []);
 
 	const navbarStyle = {
 		background: "rgba(31, 34, 46)",
-	};
-
-	const togleMenu = () => {
-		setIsMenuOpen(!isMenuOpen);
-		console.log(isMenuOpen);
 	};
 
 	return (
@@ -44,30 +56,37 @@ export default function Header() {
 			</NavbarBrand>
 
 			{/* Desktop menu */}
-			<NavbarContent className="hidden lg:flex gap-4" justify="end">
-				<NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} className="sm:hidden text-white" />
-				{/* Afficher les éléments de navigation uniquement si les données ont été chargées */}
-				{settings && (
-					<>
-						{/* Navigation items */}
-						{settings.data.navigation.map(({ link, link_label }) => (
-							<NavbarItem key={link_label}>
-								<PrismicNextLink field={link} className="px-3 text-white">
-									{link_label}
-								</PrismicNextLink>
-							</NavbarItem>
-						))}
-						{/* CTA items */}
-						{settings.data.cta.map(({ button_link, button_text }) => (
-							<NavbarItem key={button_text}>
-								<Button field={button_link} key={button_text} className="bg-white text-sm py-2 px-6 text-center">
-									{button_text}
-								</Button>
-							</NavbarItem>
-						))}
-					</>
-				)}
-			</NavbarContent>
+			<div className="text px-3">
+				<NavbarContent className="hidden lg:flex gap-4" justify="end">
+					<NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} className="sm:hidden text-white" />
+
+					{/* Afficher les éléments de navigation uniquement si les données ont été chargées */}
+					{settings && (
+						<>
+							{/* Navigation items */}
+							{settings.data.navigation.map(({ link, link_label }, index) => (
+								<motion.div key={index} variants={item} initial="initial" whileInView="animate" custom={index} viewport={{once: true,}}>
+									<NavbarItem>
+										<PrismicNextLink key={link_label} field={link} className="px-3 text-white">
+											{link_label}
+										</PrismicNextLink>
+									</NavbarItem>
+								</motion.div>
+							))}
+							{/* CTA items */}
+							{settings.data.cta.map(({ button_link, button_text }, index) => (
+								<motion.div key={index} variants={item} initial="initial" whileInView="animate" custom={index} viewport={{ once: true, }}>
+									<NavbarItem key={button_text}>
+										<Button field={button_link} key={button_text} className="bg-white text-sm py-2 px-6 text-center">
+											{button_text}
+										</Button>
+									</NavbarItem>
+								</motion.div>
+							))}
+						</>
+					)}
+				</NavbarContent>
+			</div>
 
 			{/* Mobile menu */}
 			<NavbarMenu className="bg-[#1F222E] items-center pl-8 pt-24 gap-16">
@@ -93,7 +112,7 @@ export default function Header() {
 					</>
 				)}
 			</NavbarMenu>
-			
+
 			<NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} className="lg:hidden text-white" />
 		</Navbar>
 	);
