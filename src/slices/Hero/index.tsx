@@ -49,10 +49,12 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
 
 	const { scrollYProgress: scrollForButton } = useScroll({
 		target: button,
-		offset: ["start end", "start 0.8"],
+		offset: ["start 0.8", "start 0.7"],
 	});
-	const scaleButtonProgress = useTransform(scrollForButton, [0, 1], [0.7, 1], { ease: easeOut });
-	const scaleH3Progress = useTransform(scrollForH3, [0, 1], [0.7, 1], { ease: easeOut });
+	const scaleH2Progress = useTransform(scrollForH2, [0, 1], [0.9, 1], { ease: easeOut });
+	const scaleButtonProgress = useTransform(scrollForButton, [0, 1], [0.9, 1], { ease: easeOut });
+	const scaleBodyProgress = useTransform(scrollForBody, [0, 1], [0.9, 1], { ease: easeOut });
+	const scaleH3Progress = useTransform(scrollForH3, [0, 1], [0.9, 1], { ease: easeOut });
 	return (
 		<motion.section
 			ref={container}
@@ -64,13 +66,13 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
 			}}
 			className=" py-32 md:py-0 md:h-screen bg-cover flex justify-center items-center">
 			<div className="mx-auto w-full px-10 lg:max-w-4xl text-center flex flex-col gap-8 ">
-				<motion.div ref={heading2} style={{ opacity: scrollForH2 }}>
+				<motion.div ref={heading2} style={{ opacity: scrollForH2, scale: scaleH2Progress }}>
 					<PrismicRichText field={slice.primary.heading2} components={components} />
 				</motion.div>
 				<motion.div ref={heading3} style={{ opacity: scrollForH3, scale: scaleH3Progress }}>
 					<PrismicRichText field={slice.primary.heading3} components={components} />
 				</motion.div>
-				<motion.div ref={body} style={{ opacity: scrollForBody }}>
+				<motion.div ref={body} style={{ opacity: scrollForBody, scale: scaleBodyProgress }}>
 					<PrismicRichText field={slice.primary.body} components={components} />
 				</motion.div>
 

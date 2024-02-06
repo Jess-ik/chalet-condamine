@@ -39,7 +39,7 @@ const TextImage = ({ slice }: TextImageProps): JSX.Element => {
 	  );
 	return (
 		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="md:px-20 md:py-16 lg:py-24">
-			<div className="grid lg:grid-cols-2 md:gap-4  items-center">
+			<div className="grid lg:grid-cols-2 md:gap-12  items-center">
 				<motion.div
 					ref={image}
 					style={{

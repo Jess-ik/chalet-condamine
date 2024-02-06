@@ -63,7 +63,7 @@ const Equipements = ({ slice }: EquipementsProps): JSX.Element => {
 	};
 
 	return (
-		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="px-10 md:px-40 xl:px-56 2xl:px-60 py-12">
+		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="px-10 md:px-40 xl:px-56 2xl:px-60 md:py-12">
 			<Accordion showDivider={true} defaultExpandedKeys={["appartement"]} itemClasses={itemClasses}>
 				<AccordionItem key={slice.variation} aria-label={`Accordion ${slice.variation}`} title={<PrismicRichText field={slice.primary.heading} components={components} />}>
 					<ul className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 justify-between px-6">
