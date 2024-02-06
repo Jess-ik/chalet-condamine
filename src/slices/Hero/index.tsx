@@ -83,7 +83,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
 				<div className="flex justify-center gap-8">
 					{/*  CTA buttons */}
 					{slice.items.map(({ button_link, button_text }) => (
-						<motion.div ref={button} style={{ opacity: scrollForButton, scale: scaleButtonProgress }}>
+						<motion.div ref={button} key={button_text}  style={{ opacity: scrollForButton, scale: scaleButtonProgress }}>
 							<Button field={button_link} key={button_text} className="border-2 border-black">
 								{button_text}
 							</Button>

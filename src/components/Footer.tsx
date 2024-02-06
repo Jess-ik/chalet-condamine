@@ -5,7 +5,9 @@ import Link from "next/link";
 import Logo from "./Logo";
 import Button from "./Button";
 import { JSXMapSerializer, PrismicRichText } from "@prismicio/react";
+import { SettingsDocument } from "../../prismicio-types";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 const title = {
 	initial: {
 		opacity: 0,
@@ -65,29 +67,42 @@ const components: JSXMapSerializer = {
 	),
 };
 
-export default async function Footer() {
-	// fetch data
-	const client = createClient();
-	const settings = await client.getSingle("settings");
+export default function Footer() {
+	// State pour stocker les données
+	const [settings, setSettings] = useState<SettingsDocument<string> | null>(null);
+	// Charger les données au montage du composant
+	useEffect(() => {
+		const fetchData = async () => {
+			const client = createClient();
+			const settingsData = await client.getSingle("settings");
+			setSettings(settingsData);
+		};
+
+		fetchData();
+	}, []);
 
 	return (
 		<footer className="w-full pb-7  text-[#1F222E]">
 			<div className=" grid grid-rows-2 lg:grid-rows-1 grid-cols-1 lg:grid-cols-3 justify-between  ">
 				<div className="flex justify-center">
-					{/*  Contact info */}
-					{settings.data.contact.map(({ heading, name, adress, mail, tel }) => (
-						<div key={name} className="col-span-1 flex flex-col justify-center lg:max-w-4xl mx-auto py-6">
-							<PrismicRichText field={heading} components={components} />
+					{settings && (
+						<>
+							{/*  Contact info */}
+							{settings.data.contact.map(({ heading, name, adress, mail, tel }) => (
+								<div key={name} className="col-span-1 flex flex-col justify-center lg:max-w-4xl mx-auto py-6">
+									<PrismicRichText field={heading} components={components} />
 
-							<motion.p variants={title} initial="initial" whileInView="animate" className="text-l tracking-wide leading-7 font-extralight pb-6 ">
-								{name}
-								<br />
-								{adress} <br />
-								{mail} <br />
-								{tel}
-							</motion.p>
-						</div>
-					))}
+									<motion.p variants={title} initial="initial" whileInView="animate" className="text-l tracking-wide leading-7 font-extralight pb-6 ">
+										{name}
+										<br />
+										{adress} <br />
+										{mail} <br />
+										{tel}
+									</motion.p>
+								</div>
+							))}
+						</>
+					)}
 				</div>
 
 				<div className="col-span-2 bg-slate-300">
@@ -108,22 +123,26 @@ export default async function Footer() {
 				</motion.div>
 				<nav className="hidden lg:block">
 					<ul className="flex gap-6 items-center">
-						{/* Navigation items */}
-						{settings.data.navigation.map(({ link, link_label }, index) => (
-							<motion.div key={index} variants={item} initial="initial" whileInView="animate" custom={index}>
-								<PrismicNextLink field={link} key={link_label} className="px-3 text-sm">
-									{link_label}
-								</PrismicNextLink>
-							</motion.div>
-						))}
-						{/*  CTA buttons */}
-						{settings.data.cta.map(({ button_link, button_text }, index) => (
-							<motion.div key={index} variants={item} initial="initial" whileInView="animate" custom={index}>
-								<Button field={button_link} key={button_text} className="bg-[#1F222E] text-sm py-2 px-6 text-center text-white">
-									{button_text}
-								</Button>
-							</motion.div>
-						))}
+						{settings && (
+							<>
+								{/* Navigation items */}
+								{settings.data.navigation.map(({ link, link_label }, index) => (
+									<motion.div key={index} variants={item} initial="initial" whileInView="animate" custom={index}>
+										<PrismicNextLink field={link} key={link_label} className="px-3 text-sm">
+											{link_label}
+										</PrismicNextLink>
+									</motion.div>
+								))}
+								{/*  CTA buttons */}
+								{settings.data.cta.map(({ button_link, button_text }, index) => (
+									<motion.div key={index} variants={item} initial="initial" whileInView="animate" custom={index}>
+										<Button field={button_link} key={button_text} className="bg-[#1F222E] text-sm py-2 px-6 text-center text-white">
+											{button_text}
+										</Button>
+									</motion.div>
+								))}
+							</>
+						)}
 					</ul>
 				</nav>
 			</div>

@@ -77,7 +77,7 @@ const CtA = ({ slice }: CtAProps): JSX.Element => {
 					<div className="flex gap-8 flex-col md:flex-row">
 						{/*  CTA buttons */}
 						{slice.items.map(({ button_link, button_text }) => (
-							<motion.div ref={button} style={{ opacity: scrollForButton, scale: scaleButtonProgress }}>
+							<motion.div key={button_text}  ref={button} style={{ opacity: scrollForButton, scale: scaleButtonProgress }}>
 								<Button field={button_link} key={button_text} className="bg-white mt-6">
 									{button_text}
 								</Button>
