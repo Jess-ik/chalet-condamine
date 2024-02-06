@@ -9,14 +9,13 @@ import React, { useEffect, useId, useState } from "react";
 import { SettingsDocument } from "../../prismicio-types";
 import { motion } from "framer-motion";
 
-
 const logo = {
 	initial: {
 		opacity: 0,
 		y: -30,
 		filter: "blur(5px)",
 	},
-	animate:{
+	animate: {
 		opacity: 1,
 		y: 0,
 		filter: "blur(0px)",
@@ -27,8 +26,6 @@ const logo = {
 		},
 	},
 };
-
-
 
 const item = {
 	initial: {
@@ -91,11 +88,11 @@ export default function Header() {
 	return (
 		<Navbar isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll isBlurred={false} style={navbarStyle} className="py-4 px-4 lg:px-20" maxWidth={"full"}>
 			<NavbarBrand>
-			<motion.div variants={logo} initial="initial" whileInView="animate"  viewport={{ once: true }}>
-
-				<Link href="/">
-				<Logo fillColor="#ffffff" />
-				</Link></motion.div>
+				<motion.div variants={logo} initial="initial" whileInView="animate" viewport={{ once: true }}>
+					<Link href="/">
+						<Logo fillColor="#ffffff" />
+					</Link>
+				</motion.div>
 			</NavbarBrand>
 
 			{/* Desktop menu */}
