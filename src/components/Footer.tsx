@@ -6,7 +6,21 @@ import Logo from "./Logo";
 import Button from "./Button";
 import { JSXMapSerializer, PrismicRichText } from "@prismicio/react";
 import { motion } from "framer-motion";
-
+const title = {
+	initial: {
+		opacity: 0,
+		scale: 0.8,
+	},
+	animate: {
+		opacity: 1,
+		scale: 1,
+		transition: {
+			duration: 0.3,
+			ease: "easeOut",
+			delay: 0.1,
+		},
+	},
+};
 const logo = {
 	initial: {
 		opacity: 0,
@@ -44,7 +58,7 @@ const item = {
 };
 // Rich text styling
 const components: JSXMapSerializer = {
-	heading4: ({ children }) => <h4 className="max-w-2xl  font-heading text-3xl leading-[6rem] font-light">{children}</h4>,
+	heading4: ({ children }) => <motion.h4 variants={title} initial="initial" whileInView="animate"  className="max-w-2xl  font-heading text-3xl leading-[6rem] font-light">{children}</motion.h4>,
 };
 
 export default async function Footer() {
@@ -61,13 +75,13 @@ export default async function Footer() {
 						<div key={name} className="col-span-1 flex flex-col justify-center lg:max-w-4xl mx-auto py-6">
 							<PrismicRichText field={heading} components={components} />
 
-							<p className="text-l tracking-wide leading-7 font-extralight pb-6 ">
+							<motion.p variants={title} initial="initial" whileInView="animate" className="text-l tracking-wide leading-7 font-extralight pb-6 ">
 								{name}
 								<br />
 								{adress} <br />
 								{mail} <br />
 								{tel}
-							</p>
+							</motion.p>
 						</div>
 					))}
 				</div>
