@@ -45,6 +45,17 @@ const Gallery = ({ slice }: GalleryProps): JSX.Element => {
 		cssEase: "linear",
 		row: 1,
 		variableWidth: true,
+		responsive: [
+			{
+			  breakpoint: 768, // Adjust this breakpoint based on your design
+			  settings: {
+				slidesToShow: 1,
+				slidesToScroll: 1,
+				  variableWidth: false,
+				  centerPadding: '50px',
+			  },
+			},
+		  ],
 	};
 
 	return (
@@ -60,7 +71,7 @@ const Gallery = ({ slice }: GalleryProps): JSX.Element => {
 									onOpen();
 								}}
 								key={index}
-								className="h-[450px] w-[600px] rounded-none px-0">
+								className="w-full h-full md:h-[450px] md:w-[600px] rounded-none px-0">
 								<PrismicNextImage field={item.image} className="h-[450px] w-[600px] object-cover" />
 							</Button>
 						</div>
