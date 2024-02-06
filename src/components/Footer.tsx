@@ -58,7 +58,11 @@ const item = {
 };
 // Rich text styling
 const components: JSXMapSerializer = {
-	heading4: ({ children }) => <motion.h4 variants={title} initial="initial" whileInView="animate"  className="max-w-2xl  font-heading text-3xl leading-[6rem] font-light">{children}</motion.h4>,
+	heading4: ({ children }) => (
+		<motion.h4 variants={title} initial="initial" whileInView="animate" className="max-w-2xl  font-heading text-3xl leading-[6rem] font-light">
+			{children}
+		</motion.h4>
+	),
 };
 
 export default async function Footer() {
@@ -92,12 +96,12 @@ export default async function Footer() {
 			</div>
 
 			<div className="px-20 pt-7 flex gap-4 items-center justify-between flex-col sm:flex-row">
-				<motion.div variants={logo} initial="initial" whileInView="animate" >
+				<motion.div variants={logo} initial="initial" whileInView="animate">
 					<Link href="/">
 						<Logo fillColor="#1F222E" />
 					</Link>
 				</motion.div>
-				<motion.div variants={item} initial="initial" whileInView="animate" >
+				<motion.div variants={item} initial="initial" whileInView="animate">
 					<Link href="https://jess-louvel.com" className="text-sm font-light tracking-wide">
 						Developed with ♥️ by <strong>Jessica Louvel</strong>
 					</Link>
@@ -106,7 +110,7 @@ export default async function Footer() {
 					<ul className="flex gap-6 items-center">
 						{/* Navigation items */}
 						{settings.data.navigation.map(({ link, link_label }, index) => (
-							<motion.div key={index} variants={item} initial="initial" whileInView="animate" custom={index} >
+							<motion.div key={index} variants={item} initial="initial" whileInView="animate" custom={index}>
 								<PrismicNextLink field={link} key={link_label} className="px-3 text-sm">
 									{link_label}
 								</PrismicNextLink>
@@ -114,7 +118,7 @@ export default async function Footer() {
 						))}
 						{/*  CTA buttons */}
 						{settings.data.cta.map(({ button_link, button_text }, index) => (
-							<motion.div key={index} variants={item} initial="initial" whileInView="animate" custom={index} >
+							<motion.div key={index} variants={item} initial="initial" whileInView="animate" custom={index}>
 								<Button field={button_link} key={button_text} className="bg-[#1F222E] text-sm py-2 px-6 text-center text-white">
 									{button_text}
 								</Button>

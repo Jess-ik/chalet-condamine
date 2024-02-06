@@ -52,9 +52,17 @@ const CtA = ({ slice }: CtAProps): JSX.Element => {
 	return (
 		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="h-screen">
 			<div className="bg-[#1F222E] h-screen grid grid-rows-3 lg:grid-cols-3 justify-between text-white ">
-				<div className="row-span-1">
+				<motion.div className="row-span-1"
+					
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{
+						duration: 0.5,
+						delay: 0.2,
+						ease: "easeOut",
+					}}>
 					<PrismicNextImage field={slice.primary.image} className="h-full lg:h-screen object-cover" />
-				</div>
+				</motion.div>
 				<div className="row-span-2 lg:row-span-3 lg:col-span-2 flex flex-col justify-center px-24 gap-8 max-w-4xl mx-auto">
 					<motion.div ref={heading2} style={{ opacity: scrollForH2 }}>
 						<PrismicRichText field={slice.primary.subhead} components={components} />
