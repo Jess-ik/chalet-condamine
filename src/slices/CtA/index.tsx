@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Button from "@/components/Button";
 import { Content } from "@prismicio/client";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
@@ -8,16 +8,10 @@ import { useRef } from "react";
 
 // Rich text styling
 const components: JSXMapSerializer = {
-	heading2: ({ children }) => <h2 className="max-w-2xl uppercase text-base tracking-widest  font-light">{children}</h2>,
+	heading2: ({ children }) => <h2 className="max-w-2xl uppercase text-base tracking-widest font-light">{children}</h2>,
 	heading3: ({ children }) => <h3 className="max-w-xl lg:max-w-2xl font-heading text-7xl md:text-8xl md:leading-[6rem] font-light">{children}</h3>,
-	paragraph: ({ text }) => (
-		<p className="text-xl md:text-2xl font-thin md:font-extralight leading-[2rem]">
-			{text.split(" ").map((word: string, index: number) => (
-				<motion.span key={index}>{word} </motion.span>
-			))}
-		</p>
-	),
-};
+	paragraph: ({ text }: { text?: string }) => <p className="text-xl md:text-2xl font-thin md:font-extralight leading-[2rem]">{text?.split(" ").map((word: string, index: number) => <motion.span key={index}>{word} </motion.span>)}</p>,
+  };
 
 // Props for `CtA`.
 export type CtAProps = SliceComponentProps<Content.CtASlice>;
@@ -52,8 +46,8 @@ const CtA = ({ slice }: CtAProps): JSX.Element => {
 	return (
 		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="h-screen">
 			<div className="bg-[#1F222E] h-screen grid grid-rows-3 lg:grid-cols-3 justify-between text-white ">
-				<motion.div className="row-span-1"
-					
+				<motion.div
+					className="row-span-1"
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{
@@ -77,7 +71,7 @@ const CtA = ({ slice }: CtAProps): JSX.Element => {
 					<div className="flex gap-8 flex-col md:flex-row">
 						{/*  CTA buttons */}
 						{slice.items.map(({ button_link, button_text }) => (
-							<motion.div key={button_text}  ref={button} style={{ opacity: scrollForButton, scale: scaleButtonProgress }}>
+							<motion.div key={button_text} ref={button} style={{ opacity: scrollForButton, scale: scaleButtonProgress }}>
 								<Button field={button_link} key={button_text} className="bg-white mt-6">
 									{button_text}
 								</Button>

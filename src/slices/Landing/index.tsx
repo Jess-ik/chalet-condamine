@@ -5,12 +5,11 @@ import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { JSXMapSerializer, PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { motion } from "framer-motion";
 
-
 // Rich text styling
 const components: JSXMapSerializer = {
-	heading1: ({ text }) => (
+	heading1: ({ text }: { text?: string }) => (
 		<h1 className="max-w-xl lg:max-w-2xl font-heading text-7xl md:text-8xl md:leading-[6rem] font-light">
-			{text.split(" ").map((word: string, index: number) => (
+			{text?.split(" ").map((word: string, index: number) => (
 				<motion.div key={index} variants={animTitle} initial="initial" whileInView="animate" custom={index} viewport={{ once: true }}>
 					<motion.span key={index}>{word} </motion.span>
 				</motion.div>

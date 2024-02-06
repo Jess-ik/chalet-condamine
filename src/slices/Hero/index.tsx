@@ -9,14 +9,8 @@ import { useEffect, useRef } from "react";
 const components: JSXMapSerializer = {
 	heading2: ({ children }) => <h2 className="text-xl lg:text-2xl uppercase tracking-wider">{children}</h2>,
 	heading3: ({ children }) => <h3 className="max-w-xl lg:max-w-2xl mx-auto font-heading text-7xl lg:text-8xl lg:leading-[6rem] font-light">{children}</h3>,
-	paragraph: ({ text }) => {
-		return (
-			<p className="py-8 text-xl lg:text-2xl font-extralight  ">
-				{text.split(" ").map((word: string, index: number) => (
-					<motion.span key={index}>{word} </motion.span>
-				))}
-			</p>
-		);
+	paragraph: ({ text }: { text?: string }) => {
+		return <p className="py-8 text-xl lg:text-2xl font-extralight  ">{text?.split(" ").map((word: string, index: number) => <motion.span key={index}>{word} </motion.span>)}</p>;
 	},
 };
 
@@ -83,7 +77,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
 				<div className="flex justify-center gap-8">
 					{/*  CTA buttons */}
 					{slice.items.map(({ button_link, button_text }) => (
-						<motion.div ref={button} key={button_text}  style={{ opacity: scrollForButton, scale: scaleButtonProgress }}>
+						<motion.div ref={button} key={button_text} style={{ opacity: scrollForButton, scale: scaleButtonProgress }}>
 							<Button field={button_link} key={button_text} className="border-2 border-black">
 								{button_text}
 							</Button>
