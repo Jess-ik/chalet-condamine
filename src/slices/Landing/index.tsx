@@ -43,7 +43,7 @@ const Landing = ({ slice }: LandingProps): JSX.Element => {
 	return (
 		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="lg:h-screen">
 			<div className="bg-[#1F222E] h-screen grid grid-rows-3 lg:grid-cols-3 justify-between text-white">
-				<div className="row-span-2 lg:col-span-2 flex flex-col justify-center gap-8 px-12   max-w-4xl mx-auto">
+				<div className="lg:pt-[96px] row-span-2 lg:col-span-2 flex flex-col justify-center gap-8 px-12   max-w-4xl mx-auto">
 					<PrismicRichText field={slice.primary.heading} components={components} />
 
 					<motion.div

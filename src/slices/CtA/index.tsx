@@ -3,7 +3,7 @@ import Button from "@/components/Button";
 import { Content } from "@prismicio/client";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { JSXMapSerializer, PrismicRichText, SliceComponentProps } from "@prismicio/react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { easeOut, motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 // Rich text styling
@@ -41,8 +41,8 @@ const CtA = ({ slice }: CtAProps): JSX.Element => {
 		target: button,
 		offset: ["start end", "start 0.8"],
 	});
-	const scaleButtonProgress = useTransform(scrollForButton, [0, 1], [0.7, 1]);
-	const scaleH3Progress = useTransform(scrollForH3, [0, 1], [0.7, 1]);
+	const scaleButtonProgress = useTransform(scrollForButton, [0, 1], [0.7, 1], { ease: easeOut });
+	const scaleH3Progress = useTransform(scrollForH3, [0, 1], [0.7, 1], { ease: easeOut });
 	return (
 		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="h-screen">
 			<div className="bg-[#1F222E] h-screen grid grid-rows-3 lg:grid-cols-3 justify-between text-white ">

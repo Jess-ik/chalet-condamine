@@ -2,7 +2,7 @@
 import Button from "@/components/Button";
 import { Content } from "@prismicio/client";
 import { JSXMapSerializer, PrismicRichText, SliceComponentProps } from "@prismicio/react";
-import { motion, useAnimation, useInView, useScroll, useTransform } from "framer-motion";
+import { easeOut, motion, useAnimation, useInView, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef } from "react";
 
 // Rich text styling
@@ -51,8 +51,8 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
 		target: button,
 		offset: ["start end", "start 0.8"],
 	});
-	const scaleButtonProgress = useTransform(scrollForButton, [0, 1], [0.7, 1]);
-	const scaleH3Progress = useTransform(scrollForH3, [0, 1], [0.7, 1]);
+	const scaleButtonProgress = useTransform(scrollForButton, [0, 1], [0.7, 1], { ease: easeOut });
+	const scaleH3Progress = useTransform(scrollForH3, [0, 1], [0.7, 1], { ease: easeOut });
 	return (
 		<motion.section
 			ref={container}

@@ -1,5 +1,5 @@
 "use client";
-import { useScroll, motion, useTransform } from "framer-motion";
+import { useScroll, motion, useTransform, easeOut } from "framer-motion";
 import React, { useRef } from "react";
 import { Content } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
@@ -31,7 +31,12 @@ const TextImage = ({ slice }: TextImageProps): JSX.Element => {
 		target: image,
 		offset: ["0 1", "1.33 1"],
 	  });
-	const smoothProgress = useTransform(scrollForImage, [0, 1], [0.7, 1]);
+	const smoothProgress = useTransform(
+		scrollForImage,
+		[0, 1],
+		[0.7, 1],
+		{ ease: easeOut }
+	  );
 	return (
 		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="px-20 py-16 lg:py-24">
 			<div className="grid lg:grid-cols-2 gap-20 items-center">

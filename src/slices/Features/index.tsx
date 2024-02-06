@@ -16,7 +16,7 @@ const title = {
 		scale: 1,
 		transition: {
 			duration: 0.3,
-			ease: "easeOut",
+			ease: "easeInOut",
 			delay: 0.1,
 		},
 	},
@@ -32,7 +32,7 @@ const animItem = {
 		scale: 1,
 		transition: {
 			duration: 0.3,
-			ease: "easeOut",
+			ease: "easeInOut",
 			delay: 0.08 * (index + 1),
 		},
 	}),

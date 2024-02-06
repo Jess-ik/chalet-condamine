@@ -30,7 +30,7 @@ const animTitle = {
 		y: 0,
 		transition: {
 			duration: 0.3,
-			ease: "easeOut",
+			ease: "easeInOut",
 			delay: 0.08 * (index + 1),
 		},
 	}),
