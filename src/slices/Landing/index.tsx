@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 // Rich text styling
 const components: JSXMapSerializer = {
 	heading1: ({ text }: { text?: string }) => (
-		<h1 className="max-w-xl lg:max-w-2xl font-heading text-7xl md:text-8xl md:leading-[6rem] font-light">
+		<h1 className="max-w-xl lg:max-w-2xl font-heading text-6xl md:text-8xl md:leading-[6rem] font-light">
 			{text?.split(" ").map((word: string, index: number) => (
 				<motion.div key={index} variants={animTitle} initial="initial" whileInView="animate" custom={index} viewport={{ once: true }}>
 					<motion.span key={index}>{word} </motion.span>
@@ -52,7 +52,7 @@ const Landing = ({ slice }: LandingProps): JSX.Element => {
 						transition={{
 							duration: 0.5,
 							delay: 0.2,
-							ease: "easeOut",
+							ease: "easeInOut",
 						}}>
 						<PrismicRichText field={slice.primary.intro} components={components} />
 					</motion.div>
@@ -61,8 +61,8 @@ const Landing = ({ slice }: LandingProps): JSX.Element => {
 						animate={{ opacity: 1, y: 0 }}
 						transition={{
 							duration: 0.5,
-							delay: 0.5,
-							ease: "easeOut",
+							delay: 0.3,
+							ease: "easeInOut",
 						}}>
 						<Button field={slice.primary.button_link} className="mt-6 bg-white">
 							{slice.primary.button_text}
@@ -77,7 +77,7 @@ const Landing = ({ slice }: LandingProps): JSX.Element => {
 					transition={{
 						duration: 0.5,
 						delay: 0.2,
-						ease: "easeOut",
+						ease: "easeInOut",
 					}}>
 					<PrismicNextImage field={slice.primary.image} className="h-full object-cover" />
 				</motion.div>

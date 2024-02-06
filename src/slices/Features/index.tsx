@@ -41,7 +41,7 @@ const animItem = {
 // Rich text styling
 const components: JSXMapSerializer = {
 	heading3: ({ children }) => (
-		<motion.h3 variants={title} initial="initial" whileInView="animate" className="pb-6 font-heading text-[4rem] leading-[6rem] font-extralight">
+		<motion.h3 variants={title} initial="initial" whileInView="animate" className="pb-6 text-4xl font-heading md:text-[4rem] leading-[6rem] font-extralight">
 			{children}
 		</motion.h3>
 	),
@@ -59,7 +59,7 @@ export type EquipementsProps = SliceComponentProps<Content.EquipementsSlice>;
 const Equipements = ({ slice }: EquipementsProps): JSX.Element => {
 	const itemClasses = {
 		titleWrapper: "!flex-none",
-		indicator: "relative bottom-1 left-6 text-2xl",
+		indicator: "relative bottom-2 md:bottom-1 left-6 text-2xl",
 	};
 
 	return (

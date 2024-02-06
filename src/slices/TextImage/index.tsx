@@ -8,7 +8,7 @@ import clsx from "clsx";
 
 // Rich text styling
 const components: JSXMapSerializer = {
-	paragraph: ({ children }) => <motion.p className="max-w-2xl mx-auto py-8 text-xl md:text-2xl lg:text-3xl font-extralight text-center ">{children}</motion.p>,
+	paragraph: ({ children }) => <motion.p className=" md:max-w-2xl mx-auto px-6 md:px-0 py-20 md:py-8 text-xl md:text-2xl lg:text-3xl font-extralight text-center ">{children}</motion.p>,
 };
 
 /**
@@ -38,8 +38,8 @@ const TextImage = ({ slice }: TextImageProps): JSX.Element => {
 		{ ease: easeOut }
 	  );
 	return (
-		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="px-20 py-16 lg:py-24">
-			<div className="grid lg:grid-cols-2 gap-20 items-center">
+		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="md:px-20 md:py-16 lg:py-24">
+			<div className="grid lg:grid-cols-2 md:gap-4  items-center">
 				<motion.div
 					ref={image}
 					style={{

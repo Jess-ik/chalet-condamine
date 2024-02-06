@@ -44,20 +44,20 @@ const CtA = ({ slice }: CtAProps): JSX.Element => {
 	const scaleButtonProgress = useTransform(scrollForButton, [0, 1], [0.7, 1], { ease: easeOut });
 	const scaleH3Progress = useTransform(scrollForH3, [0, 1], [0.7, 1], { ease: easeOut });
 	return (
-		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="h-screen">
-			<div className="bg-[#1F222E] h-screen grid grid-rows-3 lg:grid-cols-3 justify-between text-white ">
+		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="lg:h-screen">
+			<div className="bg-[#1F222E] md:h-screen flex flex-col md:grid md:grid-rows-3 lg:grid-cols-3 justify-between text-white ">
 				<motion.div
-					className="row-span-1"
+					className="aspect-video md:aspect-auto md:row-span-1 lg:h-screen w-screen lg:w-full"
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{
 						duration: 0.5,
 						delay: 0.2,
-						ease: "easeOut",
+						ease: "easeInOut",
 					}}>
-					<PrismicNextImage field={slice.primary.image} className="h-full lg:h-screen object-cover" />
+					<PrismicNextImage field={slice.primary.image} className="aspect-video md:aspect-auto md:h-full lg:h-screen object-cover" />
 				</motion.div>
-				<div className="row-span-2 lg:row-span-3 lg:col-span-2 flex flex-col justify-center px-24 gap-8 max-w-4xl mx-auto">
+				<div className="lg:pt-[96px] md:row-span-2 lg:col-span-2 flex flex-col justify-center gap-8 px-6 md:px-12 py-32 md:py-0  max-w-4xl mx-auto">
 					<motion.div ref={heading2} style={{ opacity: scrollForH2 }}>
 						<PrismicRichText field={slice.primary.subhead} components={components} />
 					</motion.div>
@@ -68,7 +68,7 @@ const CtA = ({ slice }: CtAProps): JSX.Element => {
 						<PrismicRichText field={slice.primary.body} components={components} />
 					</motion.div>
 
-					<div className="flex gap-8 flex-col md:flex-row">
+					<div className="flex gap-8 flex-col items-center md:flex-row">
 						{/*  CTA buttons */}
 						{slice.items.map(({ button_link, button_text }) => (
 							<motion.div key={button_text} ref={button} style={{ opacity: scrollForButton, scale: scaleButtonProgress }}>
