@@ -4,7 +4,7 @@ import { Content } from "@prismicio/client";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { JSXMapSerializer, PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { motion } from "framer-motion";
-import React from "react";
+
 
 // Rich text styling
 const components: JSXMapSerializer = {
