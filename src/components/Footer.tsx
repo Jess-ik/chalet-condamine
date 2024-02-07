@@ -82,7 +82,7 @@ export default function Footer() {
 	}, []);
 
 	return (
-		<footer className="w-full pb-7  text-[#1F222E]">
+		<footer className="w-full pb-7  text-mainBlue">
 			<div className=" grid grid-rows-2 lg:grid-rows-1 grid-cols-1 lg:grid-cols-3 justify-between  ">
 				<div className="flex justify-center">
 					{settings && (
@@ -136,7 +136,7 @@ export default function Footer() {
 								{/*  CTA buttons */}
 								{settings.data.cta.map(({ button_link, button_text }, index) => (
 									<motion.div key={index} variants={item} initial="initial" whileInView="animate" custom={index}>
-										<Button field={button_link} key={button_text} className="bg-[#1F222E] text-sm py-2 px-6 text-center text-white">
+										<Button field={button_link} key={button_text} className="bg-mainBlue text-sm py-2 px-6 text-center text-white">
 											{button_text}
 										</Button>
 									</motion.div>

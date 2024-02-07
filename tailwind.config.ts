@@ -14,7 +14,10 @@ const config: Config = {
       fontFamily:{
         body: ["var(--font-jost)"],
         heading: ["var(--font-cormorant)"],
-        },
+      },
+      colors: {
+        mainBlue: "#1F222E",
+      },
     },
   },
   plugins: [

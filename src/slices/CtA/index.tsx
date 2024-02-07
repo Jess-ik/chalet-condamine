@@ -11,7 +11,7 @@ const components: JSXMapSerializer = {
 	heading2: ({ children }) => <h2 className="max-w-2xl uppercase text-base tracking-widest font-light">{children}</h2>,
 	heading3: ({ children }) => <h3 className="max-w-xl lg:max-w-2xl font-heading text-7xl md:text-8xl md:leading-[6rem] font-light">{children}</h3>,
 	paragraph: ({ text }: { text?: string }) => <p className="text-xl md:text-2xl font-thin md:font-extralight leading-[2rem]">{text?.split(" ").map((word: string, index: number) => <motion.span key={index}>{word} </motion.span>)}</p>,
-  };
+};
 
 // Props for `CtA`.
 export type CtAProps = SliceComponentProps<Content.CtASlice>;
@@ -45,7 +45,7 @@ const CtA = ({ slice }: CtAProps): JSX.Element => {
 	const scaleH3Progress = useTransform(scrollForH3, [0, 1], [0.7, 1], { ease: easeOut });
 	return (
 		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="lg:h-screen">
-			<div className="bg-[#1F222E] md:h-screen flex flex-col md:grid md:grid-rows-3 lg:grid-cols-3 justify-between text-white ">
+			<div className="bg-mainBlue md:h-screen flex flex-col md:grid md:grid-rows-3 lg:grid-cols-3 justify-between text-white ">
 				<motion.div
 					className="aspect-video md:aspect-auto md:row-span-1 lg:h-screen w-screen lg:w-full"
 					initial={{ opacity: 0 }}

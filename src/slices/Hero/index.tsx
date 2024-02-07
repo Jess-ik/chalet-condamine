@@ -44,12 +44,12 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
 
 	const { scrollYProgress: scrollForBody } = useScroll({
 		target: body,
-		offset: ["start 0.8", "start 0.4"],
+		offset: ["start 0.9", "start 0.4"],
 	});
 
 	const { scrollYProgress: scrollForButton } = useScroll({
 		target: button,
-		offset: ["start 0.8", "start 0.7"],
+		offset: ["start 1", "start 0.7"],
 	});
 	const scaleH2Progress = useTransform(scrollForH2, [0, 1], [0.9, 1], { ease: easeOut });
 	const scaleButtonProgress = useTransform(scrollForButton, [0, 1], [0.9, 1], { ease: easeOut });

@@ -129,7 +129,7 @@ export default function Header() {
 			</div>
 
 			{/* Mobile menu */}
-			<NavbarMenu className="bg-[#1F222E] items-center pl-8 pt-24 gap-16">
+			<NavbarMenu className="bg-mainBlue items-center pl-8 pt-24 gap-16">
 				{/* Afficher les éléments de navigation uniquement si les données ont été chargées */}
 				{settings && (
 					<>
