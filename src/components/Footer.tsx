@@ -136,7 +136,7 @@ export default function Footer() {
 								{/*  CTA buttons */}
 								{settings.data.cta.map(({ button_link, button_text }, index) => (
 									<motion.div key={index} variants={item} initial="initial" whileInView="animate" custom={index}>
-										<Button field={button_link} key={button_text} className="bg-mainBlue text-sm py-2 px-6 text-center text-white">
+										<Button field={button_link} key={button_text} className="bg-mainBlue text-sm py-2 px-6 text-center !text-white">
 											{button_text}
 										</Button>
 									</motion.div>

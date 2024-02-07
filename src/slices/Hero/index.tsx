@@ -80,7 +80,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
 					{/*  CTA buttons */}
 					{slice.items.map(({ button_link, button_text }) => (
 						<motion.div ref={button} key={button_text} style={{ opacity: scrollForButton, scale: scaleButtonProgress }}>
-							<Button field={button_link} key={button_text} className="border-2 border-black">
+							<Button field={button_link} key={button_text} className="border-2 border-black hover:bg-black hover:text-white ">
 								{button_text}
 							</Button>
 						</motion.div>
