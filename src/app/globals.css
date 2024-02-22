@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .font-heading {
-    font-family: var(--font-cormorant);
+    font-family: "cormorant";
 }
