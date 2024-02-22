@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.font-heading {
+    font-family: var(--font-cormorant);
+}
