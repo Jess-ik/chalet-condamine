@@ -112,14 +112,14 @@ export default function Footer() {
 				</div>
 			</div>
 			{/* Second Section */}
-			<div className="px-20 pt-7 flex gap-4 items-center justify-between flex-col sm:flex-row">
+			<div className="md:px-20 pt-7 flex gap-4 items-center justify-center text-center md:text-left md:justify-between flex-col sm:flex-row">
 				<motion.div variants={logo} initial="initial" whileInView="animate">
 					<Link href="/">
 						<Logo fillColor="#1F222E" />
 					</Link>
 				</motion.div>
 				<motion.div variants={item} initial="initial" whileInView="animate">
-					<Link href="https://jess-louvel.com" className="text-sm font-light tracking-wide">
+					<Link href="https://jess-louvel.com" className="text-centertext-sm font-light tracking-wide">
 						Developed with ♥️ by <strong>Jessica Louvel</strong>
 					</Link>
 				</motion.div>

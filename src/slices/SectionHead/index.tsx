@@ -8,7 +8,7 @@ import { useRef } from "react";
 const components: JSXMapSerializer = {
 	heading2: ({ text }: { text?: string }) => {
 		return (
-			<motion.h2 className="max-w-3xl lg:max-w-4xl mx-auto font-heading text-6xl lg:text-8xl leading-[5rem] lg:leading-[7rem] font-light">
+			<motion.h2 className="lg:max-w-4xl mx-auto font-heading text-5xl lg:text-8xl leading-[4rem] lg:leading-[7rem] font-light">
 				{text?.split(" ").map((word: string, index: number) => (
 					<motion.span key={index} variants={animTitle} initial="initial" whileInView="animate" custom={index} viewport={{ once: true }} className="inline-block">
 						{word}

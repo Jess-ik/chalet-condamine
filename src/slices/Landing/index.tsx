@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 // Rich text styling
 const components: JSXMapSerializer = {
 	heading1: ({ text }: { text?: string }) => (
-		<h1 className="max-w-xl lg:max-w-2xl font-heading text-6xl md:text-8xl md:leading-[6rem] font-light">
+		<h1 className="lg:max-w-2xl font-heading text-5xl md:text-8xl md:leading-[6rem] font-light">
 			{text?.split(" ").map((word: string, index: number) => (
 				<motion.div key={index} variants={animTitle} initial="initial" whileInView="animate" custom={index} viewport={{ once: true }}>
 					<motion.span key={index}>{word} </motion.span>
@@ -42,7 +42,7 @@ export type LandingProps = SliceComponentProps<Content.LandingSlice>;
 const Landing = ({ slice }: LandingProps): JSX.Element => {
 	return (
 		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="lg:h-screen">
-			<div className="bg-mainBlue h-screen grid grid-rows-3 lg:grid-cols-3 justify-between text-white">
+			<div className="bg-mainBlue w-full h-screen grid grid-rows-3 lg:grid-cols-3 justify-between text-white">
 				<div className="lg:pt-[96px] row-span-2 lg:col-span-2 flex flex-col justify-center gap-8 px-12   max-w-4xl mx-auto">
 					<PrismicRichText field={slice.primary.heading} components={components} />
 
@@ -79,7 +79,7 @@ const Landing = ({ slice }: LandingProps): JSX.Element => {
 						delay: 0.2,
 						ease: "easeInOut",
 					}}>
-					<PrismicNextImage priority field={slice.primary.image} className="w-full h-full object-cover" sizes="33vw" imgixParams={{ fit: "crop", auto: "format" }} />
+					<PrismicNextImage priority field={slice.primary.image} className="w-screen lg:w-full h-full object-cover" sizes="33vw" imgixParams={{ fit: "crop", auto: "format" }} />
 				</motion.div>
 			</div>
 		</section>

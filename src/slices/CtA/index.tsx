@@ -9,7 +9,7 @@ import { useRef } from "react";
 // Rich text styling
 const components: JSXMapSerializer = {
 	heading2: ({ children }) => <h2 className="max-w-2xl uppercase text-base tracking-widest font-light">{children}</h2>,
-	heading3: ({ children }) => <h3 className="max-w-xl lg:max-w-2xl font-heading text-7xl md:text-8xl md:leading-[6rem] font-light">{children}</h3>,
+	heading3: ({ children }) => <h3 className="lg:max-w-2xl font-heading text-6xl md:text-8xl md:leading-[6rem] font-light">{children}</h3>,
 	paragraph: ({ text }: { text?: string }) => <p className="text-xl md:text-2xl font-thin md:font-extralight leading-[2rem]">{text?.split(" ").map((word: string, index: number) => <motion.span key={index}>{word} </motion.span>)}</p>,
 };
 
