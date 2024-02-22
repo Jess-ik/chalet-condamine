@@ -47,7 +47,7 @@ const TextImage = ({ slice }: TextImageProps): JSX.Element => {
 						opacity: smoothProgress,
 					}}
 					className={clsx(slice.variation === "imageRight" && "lg:order-2")}>
-					<PrismicNextImage field={slice.primary.image} imgixParams={{ fit: "crop", auto: "format" }}/>
+					<PrismicNextImage field={slice.primary.image} sizes="33vw" imgixParams={{ fit: "crop", auto: "format" }}/>
 				</motion.div>
 				<motion.div ref={paragraph} style={{ opacity: scrollForP }}>
 					<PrismicRichText field={slice.primary.body} components={components} />
