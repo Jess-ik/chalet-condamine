@@ -55,7 +55,7 @@ const CtA = ({ slice }: CtAProps): JSX.Element => {
 						delay: 0.2,
 						ease: "easeInOut",
 					}}>
-					<PrismicNextImage field={slice.primary.image} className="aspect-video md:aspect-auto md:h-full lg:h-screen object-cover" />
+					<PrismicNextImage field={slice.primary.image} className="aspect-video md:aspect-auto md:h-full lg:h-screen object-cover" imgixParams={{ fit: "crop", auto: "format" }} />
 				</motion.div>
 				<div className="lg:pt-[96px] md:row-span-2 lg:col-span-2 flex flex-col justify-center gap-8 px-6 md:px-12 py-32 md:py-0  max-w-4xl mx-auto">
 					<motion.div ref={heading2} style={{ opacity: scrollForH2 }}>

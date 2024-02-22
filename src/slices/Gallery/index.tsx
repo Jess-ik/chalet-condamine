@@ -72,7 +72,7 @@ const Gallery = ({ slice }: GalleryProps): JSX.Element => {
 								}}
 								key={index}
 								className="w-full h-full md:h-[450px] md:w-[600px] rounded-none px-0">
-								<PrismicNextImage field={item.image} className="h-[450px] w-[600px] object-cover" />
+								<PrismicNextImage field={item.image} className="h-[450px] w-[600px] object-cover" imgixParams={{ auto: "format" }}/>
 							</Button>
 						</div>
 					))}
@@ -86,7 +86,7 @@ const Gallery = ({ slice }: GalleryProps): JSX.Element => {
 						<>
 							<ModalHeader className="flex flex-col gap-1">Galerie du Chalet Condamin</ModalHeader>
 							<ModalBody>
-								<PrismicNextImage field={slice.items[selectedImageIndex].image} className="h-[50vh] object-contain" />
+								<PrismicNextImage field={slice.items[selectedImageIndex].image} className="h-[50vh] object-contain" imgixParams={{  auto: "format" }} />
 							</ModalBody>
 							<ModalFooter className="justify-center gap-8">
 								
