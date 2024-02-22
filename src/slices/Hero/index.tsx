@@ -65,7 +65,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
 				backgroundImage: `url(${backgroundImg})`,
 				backgroundPosition: 'center',
 			}}
-			className=" py-32 md:py-0 md:h-screen bg-cover flex justify-center items-center">
+			className="relative py-32 md:py-0 md:h-screen bg-cover flex justify-center items-center">
 			<div className="mx-auto w-full px-10 lg:max-w-4xl text-center flex flex-col gap-8 ">
 				<motion.div ref={heading2} style={{ opacity: scrollForH2, scale: scaleH2Progress }}>
 					<PrismicRichText field={slice.primary.heading2} components={components} />

@@ -79,7 +79,7 @@ const Landing = ({ slice }: LandingProps): JSX.Element => {
 						delay: 0.2,
 						ease: "easeInOut",
 					}}>
-					<PrismicNextImage field={slice.primary.image} className="h-full object-cover" />
+					<PrismicNextImage loading="lazy" field={slice.primary.image} className="h-full object-cover" width={900} imgixParams={{ fit: "crop" }}/>
 				</motion.div>
 			</div>
 		</section>
