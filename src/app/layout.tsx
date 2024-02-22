@@ -13,6 +13,7 @@ const cormorant = Cormorant({
 	display: "swap",
 });
 
+
 const jost = Jost({
 	subsets: ["latin"],
 	variable: "--font-jost",
