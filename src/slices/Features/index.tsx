@@ -70,7 +70,7 @@ const Equipements = ({ slice }: EquipementsProps): JSX.Element => {
 						{slice.items.map(
 							(item, index) =>
 								item && (
-									<motion.li variants={animItem} custom={index} initial="initial" whileInView="animate" key={index} viewport={{ once: true }} className="flex items-center gap-4 py-4 ">
+									<motion.li variants={animItem} custom={index} initial="initial" whileInView="animate" key={index} viewport={{ once: true }} className="flex items-center gap-4 md:py-4 ">
 										{item.feature && <i>{getIconComponent(item.feature)}</i>}
 										<PrismicRichText field={item.label} components={components} />
 									</motion.li>
