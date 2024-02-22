@@ -63,6 +63,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
 			data-slice-variation={slice.variation}
 			style={{
 				backgroundImage: `url(${backgroundImg})`,
+				backgroundPosition: 'center',
 			}}
 			className=" py-32 md:py-0 md:h-screen bg-cover flex justify-center items-center">
 			<div className="mx-auto w-full px-10 lg:max-w-4xl text-center flex flex-col gap-8 ">

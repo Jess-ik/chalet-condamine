@@ -44,11 +44,12 @@ export default function RootLayout({
 		<html lang="en" className={clsx(jost.variable, cormorant.variable, "scroll-smooth")}>
 			<body className="font-body">
 				<Providers>
-				<Header />
-				{children}
+					<Header />
+					{children}
 					<Footer />
-					</Providers>
+				</Providers>
 			</body>
+			<script async defer src="https://static.cdn.prismic.io/prismic.js?new=true&repo=chalet-condamine"></script>
 		</html>
 	);
 }

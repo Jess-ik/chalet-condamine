@@ -89,7 +89,7 @@ export default function Header() {
 		<Navbar isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen} shouldHideOnScroll isBlurred={false} style={navbarStyle} className="py-4 px-4 lg:px-20" maxWidth={"full"}>
 			<NavbarBrand>
 				<motion.div variants={logo} initial="initial" whileInView="animate" viewport={{ once: true }}>
-					<Link href="/">
+					<Link href="/" aria-label="Chalet Condamin">
 						<Logo fillColor="#ffffff" />
 					</Link>
 				</motion.div>

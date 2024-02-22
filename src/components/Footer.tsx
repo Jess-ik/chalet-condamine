@@ -8,6 +8,8 @@ import { JSXMapSerializer, PrismicRichText } from "@prismicio/react";
 import { SettingsDocument } from "../../prismicio-types";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+
+// Animations
 const title = {
 	initial: {
 		opacity: 0,
@@ -40,7 +42,6 @@ const logo = {
 		},
 	},
 };
-
 const item = {
 	initial: {
 		opacity: 0,
@@ -83,6 +84,7 @@ export default function Footer() {
 
 	return (
 		<footer className="w-full pb-7  text-mainBlue">
+			{/* First Section */}
 			<div className=" grid grid-rows-2 lg:grid-rows-1 grid-cols-1 lg:grid-cols-3 justify-between  ">
 				<div className="flex justify-center">
 					{settings && (
@@ -106,10 +108,10 @@ export default function Footer() {
 				</div>
 
 				<div className="col-span-2 bg-slate-300">
-					<iframe src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d11316.143687065312!2d6.4589136!3d44.8412018!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDTCsDUwJzI5LjAiTiA2wrAyNyc1NS45IkU!5e0!3m2!1sen!2sfr!4v1706698081040!5m2!1sen!2sfr" width="100%" height="100%" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+					<iframe  title="Google maps" src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d11316.143687065312!2d6.4589136!3d44.8412018!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDTCsDUwJzI5LjAiTiA2wrAyNyc1NS45IkU!5e0!3m2!1sen!2sfr!4v1706698081040!5m2!1sen!2sfr" width="100%" height="100%" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
 				</div>
 			</div>
-
+			{/* Second Section */}
 			<div className="px-20 pt-7 flex gap-4 items-center justify-between flex-col sm:flex-row">
 				<motion.div variants={logo} initial="initial" whileInView="animate">
 					<Link href="/">
