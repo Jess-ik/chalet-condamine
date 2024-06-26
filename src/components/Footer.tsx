@@ -83,7 +83,7 @@ export default function Footer() {
 	}, []);
 
 	return (
-		<footer className="w-full pb-7  text-mainBlue">
+		<footer  className="w-full pb-7  text-mainBlue" id="contact">
 			{/* First Section */}
 			<div className=" grid grid-rows-2 lg:grid-rows-1 grid-cols-1 lg:grid-cols-3 justify-between  ">
 				<div className="flex justify-center">

@@ -1,76 +1,38 @@
 "use client";
+
+import React, { useEffect, useState } from "react";
 import { createClient } from "@/prismicio";
 import { PrismicNextLink } from "@prismicio/next";
 import Button from "./Button";
 import Link from "next/link";
 import Logo from "./Logo";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem } from "@nextui-org/react";
-import React, { useEffect, useId, useState } from "react";
-import { SettingsDocument } from "../../prismicio-types";
 import { motion } from "framer-motion";
+import { SettingsDocument } from "../../prismicio-types";
+import ThemeButton from "./ThemeButton"; // Import the ThemeButton
+import { useTheme } from "next-themes"; // Import useTheme hook
+
 
 const logo = {
-	initial: {
-		opacity: 0,
-		y: -30,
-		filter: "blur(5px)",
-	},
-	animate: {
-		opacity: 1,
-		y: 0,
-		filter: "blur(0px)",
-		transition: {
-			duration: 0.3,
-			ease: "easeOut",
-			delay: 0.08,
-		},
-	},
+	initial: { opacity: 0, y: -30, filter: "blur(5px)" },
+	animate: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.3, ease: "easeOut", delay: 0.08 } },
 };
 
 const item = {
-	initial: {
-		opacity: 0,
-		y: -30,
-		filter: "blur(5px)",
-	},
-	animate: (index: number) => ({
-		opacity: 1,
-		y: 0,
-		filter: "blur(0px)",
-		transition: {
-			duration: 0.3,
-			ease: "easeOut",
-			delay: 0.08 * (index + 1),
-		},
-	}),
+	initial: { opacity: 0, y: -30, filter: "blur(5px)" },
+	animate: (index) => ({ opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.3, ease: "easeOut", delay: 0.08 * (index + 1) } }),
 };
 
 const menuItem = {
-	initial: {
-		opacity: 0,
-		y: -80,
-		filter: "blur(5px)",
-	},
-	animate: (index: number) => ({
-		opacity: 1,
-		y: 0,
-		filter: "blur(0px)",
-		transition: {
-			duration: 0.3,
-			ease: "easeOut",
-			delay: 0.08 * index,
-		},
-	}),
+	initial: { opacity: 0, y: -80, filter: "blur(5px)" },
+	animate: (index) => ({ opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.3, ease: "easeOut", delay: 0.08 * index } }),
 };
 
 export default function Header() {
-	// State pour stocker les données
 	const [settings, setSettings] = useState<SettingsDocument<string> | null>(null);
-
-	// State pour gérer l'état du menu
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const { resolvedTheme } = useTheme();
 
-	// Charger les données au montage du composant
 	useEffect(() => {
 		const fetchData = async () => {
 			const client = createClient();
@@ -82,7 +44,7 @@ export default function Header() {
 	}, []);
 
 	const navbarStyle = {
-		background: "rgba(31, 34, 46)",
+		background: resolvedTheme === "dark" ? "#1F222E" : "#4A6B52",
 	};
 
 	return (
@@ -94,16 +56,12 @@ export default function Header() {
 					</Link>
 				</motion.div>
 			</NavbarBrand>
-
-			{/* Desktop menu */}
 			<div className="text px-3">
 				<NavbarContent className="hidden lg:flex gap-4" justify="end">
 					<NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} className="sm:hidden text-white" />
 
-					{/* Afficher les éléments de navigation uniquement si les données ont été chargées */}
 					{settings && (
 						<>
-							{/* Navigation items */}
 							{settings.data.navigation.map(({ link, link_label }, index) => (
 								<motion.div key={index} variants={item} initial="initial" whileInView="animate" custom={index} viewport={{ once: true }}>
 									<NavbarItem>
@@ -113,7 +71,6 @@ export default function Header() {
 									</NavbarItem>
 								</motion.div>
 							))}
-							{/* CTA items */}
 							{settings.data.cta.map(({ button_link, button_text }, index) => (
 								<motion.div key={index} variants={item} initial="initial" whileInView="animate" custom={index} viewport={{ once: true }}>
 									<NavbarItem key={button_text}>
@@ -125,15 +82,14 @@ export default function Header() {
 							))}
 						</>
 					)}
+					<motion.div variants={logo} initial="initial" whileInView="animate" viewport={{ once: true }}>
+				<ThemeButton /> {/* Add the ThemeButton here */}
+			</motion.div>
 				</NavbarContent>
 			</div>
-
-			{/* Mobile menu */}
-			<NavbarMenu className="bg-mainBlue items-center pl-8 pt-24 gap-16">
-				{/* Afficher les éléments de navigation uniquement si les données ont été chargées */}
+			<NavbarMenu className="bg-mainGreen dark:bg-mainBlue items-center pl-8 pt-24 gap-16">
 				{settings && (
 					<>
-						{/* Navigation items */}
 						{settings.data.navigation.map(({ link, link_label }, index) => (
 							<motion.div key={index} variants={menuItem} initial="initial" whileInView="animate" custom={index} viewport={{ once: true }}>
 								<NavbarMenuItem key={link_label} onClick={() => setIsMenuOpen(false)}>
@@ -143,7 +99,6 @@ export default function Header() {
 								</NavbarMenuItem>
 							</motion.div>
 						))}
-						{/* CTA items */}
 						{settings.data.cta.map(({ button_link, button_text }, index) => (
 							<motion.div key={index} variants={menuItem} initial="initial" whileInView="animate" custom={index} viewport={{ once: true }}>
 								<NavbarMenuItem key={button_text} onClick={() => setIsMenuOpen(false)}>
@@ -155,9 +110,12 @@ export default function Header() {
 						))}
 					</>
 				)}
+				<motion.div variants={logo} initial="initial" whileInView="animate" viewport={{ once: true }}>
+				<ThemeButton /> {/* Add the ThemeButton here */}
+			</motion.div>
 			</NavbarMenu>
+			<NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} className="lg:hidden text-white" />{" "}
 
-			<NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} className="lg:hidden text-white" />
 		</Navbar>
 	);
 }

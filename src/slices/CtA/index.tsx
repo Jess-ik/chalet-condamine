@@ -45,7 +45,7 @@ const CtA = ({ slice }: CtAProps): JSX.Element => {
 	const scaleH3Progress = useTransform(scrollForH3, [0, 1], [0.7, 1], { ease: easeOut });
 	return (
 		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="lg:h-screen">
-			<div className="bg-mainBlue md:h-screen flex flex-col md:grid md:grid-rows-3 lg:grid-cols-3 justify-between text-white ">
+			<div className="bg-mainGreen dark:bg-mainBlue md:h-screen flex flex-col md:grid md:grid-rows-3 lg:grid-cols-3 justify-between text-white ">
 				<motion.div
 					className="aspect-video md:aspect-auto md:row-span-1 lg:h-screen w-screen lg:w-full"
 					initial={{ opacity: 0 }}

@@ -1,4 +1,4 @@
-import type { Metadata, ResolvingMetadata } from "next";
+import type { Metadata } from "next";
 import { Jost, Cormorant } from "next/font/google";
 import "./globals.css";
 import clsx from "clsx";
@@ -6,51 +6,51 @@ import { createClient } from "@/prismicio";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Providers } from "./providers";
+import { ThemeProvider } from "next-themes";
 
 const cormorant = Cormorant({
-	subsets: ["latin"],
-	variable: "--font-cormorant",
-	display: "swap",
+  subsets: ["latin"],
+  variable: "--font-cormorant",
+  display: "swap",
 });
-
 
 const jost = Jost({
-	subsets: ["latin"],
-	variable: "--font-jost",
-	display: "swap",
+  subsets: ["latin"],
+  variable: "--font-jost",
+  display: "swap",
 });
 
-// Dynamic metadata from settings custom type
 export async function generateMetadata(): Promise<Metadata> {
-	const client = createClient();
+  const client = createClient();
 
-	//fetch settings custom type data
-	const settings = await client.getSingle("settings");
+  const settings = await client.getSingle("settings");
 
-	return {
-		title: settings.data.site_title || "Chalet Condamin",
-		description: settings.data.meta_description || "Découvrez l'authenticité de Vallouise et reservez votre séjour dans notre appartement de 50m2 avec jardin et voûtes d'origine.",
-		openGraph: {
-			images: [settings.data.og_image.url || ""],
-		},
-	};
+  return {
+    title: settings.data.site_title || "Chalet Condamin",
+    description: settings.data.meta_description || "Découvrez l'authenticité de Vallouise et reservez votre séjour dans notre appartement de 50m2 avec jardin et voûtes d'origine.",
+    openGraph: {
+      images: [settings.data.og_image.url || ""],
+    },
+  };
 }
 
 export default function RootLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return (
-		<html lang="en" className={clsx(jost.variable, cormorant.variable, "scroll-smooth")}>
-			<body className="font-body">
-				<Providers>
-					<Header />
-					{children}
-					<Footer />
-				</Providers>
-			</body>
-			<script async defer src="https://static.cdn.prismic.io/prismic.js?new=true&repo=chalet-condamine"></script>
-		</html>
-	);
+  return (
+    <html lang="en" className={clsx(jost.variable, cormorant.variable, "scroll-smooth")}>
+      <body className="font-body bg-white text-black">
+        <ThemeProvider attribute="class">
+          <Providers>
+            <Header />
+            {children}
+            <Footer />
+          </Providers>
+        </ThemeProvider>
+      </body>
+      <script async defer src="https://static.cdn.prismic.io/prismic.js?new=true&repo=chalet-condamine"></script>
+    </html>
+  );
 }

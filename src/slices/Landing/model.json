@@ -45,10 +45,18 @@
             "placeholder": ""
           }
         },
-        "image": {
+        "image_winter": {
           "type": "Image",
           "config": {
-            "label": "Image",
+            "label": "Image Winter",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image_summer": {
+          "type": "Image",
+          "config": {
+            "label": "Image Summer",
             "constraint": {},
             "thumbnails": []
           }

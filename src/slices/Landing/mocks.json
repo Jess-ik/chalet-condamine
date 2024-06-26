@@ -29,29 +29,6 @@
 					}
 				]
 			},
-			"image": {
-				"origin": {
-					"id": "k5579Jnq7sk",
-					"url": "https://images.unsplash.com/photo-1577138565420-9780b78b0ee1?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwzfHxjaGFsZXR8ZW58MHx8fHwxNzA2NjAzNzk2fDA&ixlib=rb-4.0.3&q=85",
-					"width": 3941,
-					"height": 4925
-				},
-				"url": "https://images.unsplash.com/photo-1577138565420-9780b78b0ee1?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMzc0NjN8MHwxfHNlYXJjaHwzfHxjaGFsZXR8ZW58MHx8fHwxNzA2NjAzNzk2fDA&ixlib=rb-4.0.3&q=85",
-				"width": 3941,
-				"height": 4925,
-				"edit": {
-					"background": "transparent",
-					"zoom": 1,
-					"crop": {
-						"x": 0,
-						"y": 0
-					}
-				},
-				"credits": null,
-				"alt": "snow covered house and trees during daytime",
-				"__TYPE__": "ImageContent",
-				"thumbnails": {}
-			},
 			"button_link": {
 				"__TYPE__": "LinkContent",
 				"value": {
@@ -63,6 +40,50 @@
 				"__TYPE__": "FieldContent",
 				"type": "Text",
 				"value": "Découvrir"
+			},
+			"image_summer": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1551739440-5dd934d3a94a",
+					"width": 3456,
+					"height": 4320
+				},
+				"url": "https://images.unsplash.com/photo-1551739440-5dd934d3a94a",
+				"width": 3456,
+				"height": 4320,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"credits": null,
+				"alt": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"image_winter": {
+				"__TYPE__": "ImageContent",
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1600861194802-a2b11076bc51",
+					"width": 2545,
+					"height": 2545
+				},
+				"url": "https://images.unsplash.com/photo-1600861194802-a2b11076bc51",
+				"width": 2545,
+				"height": 2545,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"thumbnails": {}
 			}
 		},
 		"items": []

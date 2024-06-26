@@ -9,6 +9,7 @@ const config: Config = {
     "./src/slices/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class', // Enable dark mode using the 'class' strategy
   theme: {
     extend: {
       fontFamily:{
@@ -17,13 +18,12 @@ const config: Config = {
       },
       colors: {
         mainBlue: "#1F222E",
+        mainGreen: "#4A6B52",
       },
     },
   },
   plugins: [
-    nextui({
-   
-    }),
+    nextui(),
   ],
 };
 export default config;

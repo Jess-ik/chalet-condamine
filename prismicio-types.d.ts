@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type HomeDocumentDataSlicesSlice =
+  | PriceSlice
   | CtASlice
   | EquipementsSlice
   | GallerySlice
@@ -779,14 +780,24 @@ export interface LandingSliceDefaultPrimary {
   button_text: prismic.KeyTextField;
 
   /**
-   * Image field in *Landing → Primary*
+   * Image Winter field in *Landing → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: landing.primary.image
+   * - **API ID Path**: landing.primary.image_winter
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.ImageField<never>;
+  image_winter: prismic.ImageField<never>;
+
+  /**
+   * Image Summer field in *Landing → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: landing.primary.image_summer
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image_summer: prismic.ImageField<never>;
 }
 
 /**
@@ -818,6 +829,88 @@ export type LandingSlice = prismic.SharedSlice<
   "landing",
   LandingSliceVariation
 >;
+
+/**
+ * Primary content in *Price → Items*
+ */
+export interface PriceSliceDefaultItem {
+  /**
+   * Product name field in *Price → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: price.items[].product_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  product_name: prismic.KeyTextField;
+
+  /**
+   * Product description field in *Price → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: price.items[].product_description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  product_description: prismic.KeyTextField;
+
+  /**
+   * Price field in *Price → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: price.items[].price
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  price: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *Price → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: price.items[].button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+
+  /**
+   * Button Name field in *Price → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: price.items[].button_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_name: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for Price Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PriceSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  Simplify<PriceSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Price*
+ */
+type PriceSliceVariation = PriceSliceDefault;
+
+/**
+ * Price Shared Slice
+ *
+ * - **API ID**: `price`
+ * - **Description**: Price
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PriceSlice = prismic.SharedSlice<"price", PriceSliceVariation>;
 
 /**
  * Primary content in *SectionHead → Primary*
@@ -1015,6 +1108,10 @@ declare module "@prismicio/client" {
       LandingSliceDefaultPrimary,
       LandingSliceVariation,
       LandingSliceDefault,
+      PriceSlice,
+      PriceSliceDefaultItem,
+      PriceSliceVariation,
+      PriceSliceDefault,
       SectionHeadSlice,
       SectionHeadSliceDefaultPrimary,
       SectionHeadSliceVariation,
