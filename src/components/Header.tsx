@@ -20,12 +20,12 @@ const logo = {
 
 const item = {
 	initial: { opacity: 0, y: -30, filter: "blur(5px)" },
-	animate: (index) => ({ opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.3, ease: "easeOut", delay: 0.08 * (index + 1) } }),
+	animate: (index: number) => ({ opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.3, ease: "easeOut", delay: 0.08 * (index + 1) } }),
 };
 
 const menuItem = {
 	initial: { opacity: 0, y: -80, filter: "blur(5px)" },
-	animate: (index) => ({ opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.3, ease: "easeOut", delay: 0.08 * index } }),
+	animate: (index: number) => ({ opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.3, ease: "easeOut", delay: 0.08 * index } }),
 };
 
 export default function Header() {
