@@ -4,6 +4,40 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type AccordionDocumentDataSlicesSlice = EquipementsSlice;
+
+/**
+ * Content for Accordion documents
+ */
+interface AccordionDocumentData {
+  /**
+   * Slice Zone field in *Accordion*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: accordion.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<AccordionDocumentDataSlicesSlice>;
+}
+
+/**
+ * Accordion document from Prismic
+ *
+ * - **API ID**: `accordion`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AccordionDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<AccordionDocumentData>,
+    "accordion",
+    Lang
+  >;
+
 type HomeDocumentDataSlicesSlice =
   | PriceSlice
   | CtASlice
@@ -276,7 +310,10 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = HomeDocument | SettingsDocument;
+export type AllDocumentTypes =
+  | AccordionDocument
+  | HomeDocument
+  | SettingsDocument;
 
 /**
  * Primary content in *CtA → Primary*
@@ -831,6 +868,41 @@ export type LandingSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *Price → Primary*
+ */
+export interface PriceSliceDefaultPrimary {
+  /**
+   * Description field in *Price → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: price.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * Button Link field in *Price → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: price.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField;
+
+  /**
+   * Button Name field in *Price → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: price.primary.button_name
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_name: prismic.KeyTextField;
+}
+
+/**
  * Primary content in *Price → Items*
  */
 export interface PriceSliceDefaultItem {
@@ -883,6 +955,16 @@ export interface PriceSliceDefaultItem {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   button_name: prismic.KeyTextField;
+
+  /**
+   * image field in *Price → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: price.items[].image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
 }
 
 /**
@@ -894,7 +976,7 @@ export interface PriceSliceDefaultItem {
  */
 export type PriceSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Record<string, never>,
+  Simplify<PriceSliceDefaultPrimary>,
   Simplify<PriceSliceDefaultItem>
 >;
 
@@ -1070,6 +1152,9 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      AccordionDocument,
+      AccordionDocumentData,
+      AccordionDocumentDataSlicesSlice,
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
@@ -1109,6 +1194,7 @@ declare module "@prismicio/client" {
       LandingSliceVariation,
       LandingSliceDefault,
       PriceSlice,
+      PriceSliceDefaultPrimary,
       PriceSliceDefaultItem,
       PriceSliceVariation,
       PriceSliceDefault,

@@ -7,10 +7,10 @@ import { useEffect, useRef } from "react";
 
 // Rich text styling
 const components: JSXMapSerializer = {
-	heading2: ({ children }) => <h2 className="text-xl lg:text-2xl uppercase tracking-wider">{children}</h2>,
-	heading3: ({ children }) => <h3 className=" lg:max-w-2xl mx-auto font-heading text-6xl lg:text-8xl lg:leading-[6rem] font-light">{children}</h3>,
+	heading2: ({ children }) => <h2 className="text-xl lg:text-2xl jost uppercase tracking-wider">{children}</h2>,
+	heading3: ({ children }) => <h3 className=" lg:max-w-2xl mx-auto text-6xl lg:text-8xl lg:leading-[6rem] font-light">{children}</h3>,
 	paragraph: ({ text }: { text?: string }) => {
-		return <p className="py-8 text-xl lg:text-2xl font-extralight  ">{text?.split(" ").map((word: string, index: number) => <motion.span key={index}>{word} </motion.span>)}</p>;
+		return <p className="py-8">{text?.split(" ").map((word: string, index: number) => <motion.span key={index}>{word} </motion.span>)}</p>;
 	},
 };
 

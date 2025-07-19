@@ -8,7 +8,7 @@ import clsx from "clsx";
 
 // Rich text styling
 const components: JSXMapSerializer = {
-	paragraph: ({ children }) => <motion.p className=" md:max-w-2xl mx-auto px-6 md:px-0 py-20 md:py-8 text-xl md:text-2xl lg:text-3xl font-extralight text-center ">{children}</motion.p>,
+	paragraph: ({ children }) => <motion.p className=" md:max-w-2xl mx-auto px-6 md:px-0 py-20 md:py-8 text-center ">{children}</motion.p>,
 };
 
 /**

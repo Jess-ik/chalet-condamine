@@ -10,7 +10,7 @@ import { JSXMapSerializer, PrismicRichText, SliceComponentProps } from "@prismic
 // Rich text styling
 const components: JSXMapSerializer = {
     heading1: ({ text }: { text?: string }) => (
-        <h1 className="lg:max-w-2xl font-heading text-5xl md:text-8xl md:leading-[6rem] font-light">
+        <h1 className="lg:max-w-2xl text-5xl md:text-8xl md:leading-[6rem] font-light">
             {text?.split(" ").map((word: string, index: number) => (
                 <motion.div key={index} variants={animTitle} initial="initial" whileInView="animate" custom={index} viewport={{ once: true }}>
                     <motion.span key={index}>{word} </motion.span>
@@ -18,7 +18,7 @@ const components: JSXMapSerializer = {
             ))}
         </h1>
     ),
-    paragraph: ({ children }) => <p className="text-2xl md:text-3xl font-extralight">{children}</p>,
+    paragraph: ({ children }) => <p className="text-2xl md:text-3xl">{children}</p>,
 };
 
 const animTitle = {

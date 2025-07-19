@@ -1,0 +1,28 @@
+{
+  "id": "accordion",
+  "label": "Accordion",
+  "format": "custom",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "equipements": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    }
+  }
+}

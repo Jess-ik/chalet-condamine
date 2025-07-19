@@ -62,7 +62,7 @@ const item = {
 // Rich text styling
 const components: JSXMapSerializer = {
 	heading4: ({ children }) => (
-		<motion.h4 variants={title} initial="initial" whileInView="animate" className="max-w-2xl  font-heading text-3xl leading-[6rem] font-light">
+		<motion.h4 variants={title} initial="initial" whileInView="animate" className="max-w-2xl text-3xl leading-[6rem] font-light">
 			{children}
 		</motion.h4>
 	),

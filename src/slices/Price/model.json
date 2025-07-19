@@ -1,0 +1,86 @@
+{
+  "id": "price",
+  "type": "SharedSlice",
+  "name": "Price",
+  "description": "Price",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "description": {
+          "type": "Text",
+          "config": {
+            "label": "Description",
+            "placeholder": ""
+          }
+        },
+        "button_link": {
+          "type": "Link",
+          "config": {
+            "label": "Button Link",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "button_name": {
+          "type": "Text",
+          "config": {
+            "label": "Button Name",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {
+        "product_name": {
+          "type": "Text",
+          "config": {
+            "label": "Product name",
+            "placeholder": ""
+          }
+        },
+        "product_description": {
+          "type": "Text",
+          "config": {
+            "label": "Product description",
+            "placeholder": ""
+          }
+        },
+        "price": {
+          "type": "Text",
+          "config": {
+            "label": "Price",
+            "placeholder": ""
+          }
+        },
+        "button_link": {
+          "type": "Link",
+          "config": {
+            "label": "Button Link",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "button_name": {
+          "type": "Text",
+          "config": {
+            "label": "Button Name",
+            "placeholder": ""
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      }
+    }
+  ]
+}

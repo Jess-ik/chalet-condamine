@@ -41,11 +41,11 @@ const animItem = {
 // Rich text styling
 const components: JSXMapSerializer = {
 	heading3: ({ children }) => (
-		<motion.h3 variants={title} initial="initial" whileInView="animate" className="pb-6 text-4xl font-heading md:text-[4rem] leading-[6rem] font-extralight">
+		<motion.h3 variants={title} initial="initial" whileInView="animate" className="pb-6 text-2xl md:text-[3rem] leading-[6rem] font-extralight ">
 			{children}
 		</motion.h3>
 	),
-	paragraph: ({ children }) => <p className="py-8 pr-[50px] text-xl font-light text-slate-700">{children}</p>,
+	paragraph: ({ children }) => <p className="py-8 pr-[50px]  text-slate-700">{children}</p>,
 };
 
 /**
@@ -58,12 +58,12 @@ export type EquipementsProps = SliceComponentProps<Content.EquipementsSlice>;
  */
 const Equipements = ({ slice }: EquipementsProps): JSX.Element => {
 	const itemClasses = {
-		titleWrapper: "!flex-none",
+		titleWrapper: "!flex-none rounded-[100px] border border-mainBlue",
 		indicator: "relative bottom-2 md:bottom-1 left-6 text-2xl",
 	};
 
 	return (
-		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="px-10 md:px-40 xl:px-56 2xl:px-60 md:py-12">
+		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="bg-[#EBECF1] px-10 md:px-40 xl:px-56 2xl:px-60 md:py-12">
 			<Accordion showDivider={true} defaultExpandedKeys={["appartement"]} itemClasses={itemClasses}>
 				<AccordionItem key={slice.variation} aria-label={`Accordion ${slice.variation}`} title={<PrismicRichText field={slice.primary.heading} components={components} />}>
 					<ul className="grid md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 justify-between px-6">
