@@ -42,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={clsx(jost.variable, cormorant.variable, "scroll-smooth")}>
       <body className="font-body bg-white text-black">
-        <ThemeProvider attribute="class">
+        <ThemeProvider attribute="class" defaultTheme="dark">
           <Providers>
             <Header />
             {children}
