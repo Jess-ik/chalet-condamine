@@ -36,7 +36,7 @@ const Price = ({ slice }: PriceProps): JSX.Element => {
 									</div>
 
 									<div>
-										<p className="font-medium text-[1rem]">A PARTIR DE:</p>
+										<p className="font-medium text-[1rem] mt-6">A PARTIR DE:</p>
 										<p>{item.price}</p>
 									</div>
 							

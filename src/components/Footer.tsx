@@ -83,7 +83,7 @@ export default function Footer() {
 	}, []);
 
 	return (
-		<footer  className="w-full pb-7  text-mainBlue" id="contact">
+		<footer className="w-full pb-7  text-mainBlue" id="contact">
 			{/* First Section */}
 			<div className=" grid grid-rows-2 lg:grid-rows-1 grid-cols-1 lg:grid-cols-3 justify-between  ">
 				<div className="flex justify-center">
@@ -94,13 +94,19 @@ export default function Footer() {
 								<div key={name} className="col-span-1 flex flex-col justify-center lg:max-w-4xl mx-auto py-6">
 									<PrismicRichText field={heading} components={components} />
 
-									<motion.p variants={title} initial="initial" whileInView="animate" className="text-l tracking-wide leading-7 font-extralight pb-6 ">
-										{name}
-										<br />
-										{adress} <br />
-										{mail} <br />
-										{tel}
-									</motion.p>
+									<motion.div variants={title} initial="initial" whileInView="animate" className="pb-6">
+										<p className="font-normal mb-2">{name}</p>
+
+										<div className="text-sm leading-6  space-y-1">
+											<p>{adress}</p>
+											<p className="pt-2 hover:text-mainGreen">
+												<a href={`mailto:${mail}`}>{mail}</a>
+											</p>
+											<p className="hover:text-mainGreen">
+												<a href={`tel:${tel}`}>{tel}</a>
+											</p>
+										</div>
+									</motion.div>
 								</div>
 							))}
 						</>
