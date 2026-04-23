@@ -3,6 +3,7 @@ import { Content } from "@prismicio/client";
 import { JSXMapSerializer, PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { useTheme } from "next-themes";
 
 // Rich text styling
 const components: JSXMapSerializer = {
@@ -45,15 +46,11 @@ export type SectionHeadProps = SliceComponentProps<Content.SectionHeadSlice>;
  * Component for "SectionHead" Slices.
  */
 const SectionHead = ({ slice }: SectionHeadProps): JSX.Element => {
+	const { resolvedTheme } = useTheme();
 	return (
-<section
-  id={slice.primary.anchor_id || undefined}
-  data-slice-type={slice.slice_type}
-  data-slice-variation={slice.variation}
-  className={`scroll-section pt-32 md:pt-44 lg:pt-52 pb-24 text-center rounded-t-[50px] ${
-    slice.primary.anchor_id === 'features' ? 'bg-[#EBECF1]' : ''
-  }`}
->			<PrismicRichText field={slice.primary.heading} components={components} />
+		<section id={slice.primary.anchor_id || undefined} data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className={`scroll-section pt-32 md:pt-44 lg:pt-52 pb-24 text-center rounded-t-[50px] ${slice.primary.anchor_id === "features" ? (resolvedTheme === "dark" ? "bg-mainBlue" : "bg-[#EBECF1]") : ""}`}>
+			{" "}
+			<PrismicRichText field={slice.primary.heading} components={components} />
 		</section>
 	);
 };

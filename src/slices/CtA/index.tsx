@@ -1,32 +1,61 @@
-"use client";
+"use client";"use client";
+
 import Button from "@/components/Button";
 import { Content } from "@prismicio/client";
-import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { JSXMapSerializer, PrismicRichText, SliceComponentProps } from "@prismicio/react";
-import { easeOut, motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { useTheme } from "next-themes";
 
 // Rich text styling
 const components: JSXMapSerializer = {
-	heading2: ({ children }) => <h2 className="max-w-2xl uppercase text-base jost tracking-widest font-[400]">{children}</h2>,
-	heading3: ({ children }) => <h3 className="lg:max-w-2xl text-6xl md:text-8xl md:leading-[6rem] font-light">{children}</h3>,
-	paragraph: ({ text }: { text?: string }) => <p>{text?.split(" ").map((word: string, index: number) => <motion.span key={index}>{word} </motion.span>)}</p>,
+	heading2: ({ children }) => (
+		<h2 className="max-w-2xl uppercase text-base jost tracking-widest font-[400]">
+			{children}
+		</h2>
+	),
+	heading3: ({ children }) => (
+		<h3 className="lg:max-w-2xl text-6xl md:text-8xl md:leading-[6rem] font-light">
+			{children}
+		</h3>
+	),
+	paragraph: ({ text }: { text?: string }) => (
+		<p>
+			{text?.split(" ").map((word: string, index: number) => (
+				<motion.span key={index}>{word} </motion.span>
+			))}
+		</p>
+	),
 };
 
-// Props for `CtA`.
+/**
+ * Props
+ */
 export type CtAProps = SliceComponentProps<Content.CtASlice>;
 
-//Component for "CtA" Slices.
+/**
+ * Component
+ */
 const CtA = ({ slice }: CtAProps): JSX.Element => {
 	const heading2 = useRef(null);
 	const heading3 = useRef(null);
 	const body = useRef(null);
 	const button = useRef(null);
 
+	const { resolvedTheme } = useTheme();
+
+	// 🎯 SAFE image selection (no hydration mismatch)
+	const imageSrc =
+		resolvedTheme === "dark"
+			? slice.primary.image_winter?.url
+			: slice.primary.image_summer?.url;
+
+	// Scroll animations
 	const { scrollYProgress: scrollForH2 } = useScroll({
 		target: heading2,
 		offset: ["start 0.8", "start 0.3"],
 	});
+
 	const { scrollYProgress: scrollForH3 } = useScroll({
 		target: heading3,
 		offset: ["start 0.8", "start 0.4"],
@@ -41,11 +70,19 @@ const CtA = ({ slice }: CtAProps): JSX.Element => {
 		target: button,
 		offset: ["start end", "start 0.8"],
 	});
-	const scaleButtonProgress = useTransform(scrollForButton, [0, 1], [0.7, 1], { ease: easeOut });
-	const scaleH3Progress = useTransform(scrollForH3, [0, 1], [0.7, 1], { ease: easeOut });
+
+	const scaleButtonProgress = useTransform(scrollForButton, [0, 1], [0.7, 1]);
+	const scaleH3Progress = useTransform(scrollForH3, [0, 1], [0.7, 1]);
+
 	return (
-		<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation} className="lg:h-screen">
-			<div className="bg-mainGreen dark:bg-mainBlue md:h-screen flex flex-col md:grid md:grid-rows-3 lg:grid-cols-3 justify-between text-white ">
+		<section
+			data-slice-type={slice.slice_type}
+			data-slice-variation={slice.variation}
+			className="lg:h-screen"
+		>
+			<div className="bg-mainGreen dark:bg-mainBlue md:h-screen flex flex-col md:grid md:grid-rows-3 lg:grid-cols-3 justify-between text-white">
+
+				{/* IMAGE */}
 				<motion.div
 					className="aspect-video md:aspect-auto md:row-span-1 lg:h-screen w-screen lg:w-full"
 					initial={{ opacity: 0 }}
@@ -54,30 +91,50 @@ const CtA = ({ slice }: CtAProps): JSX.Element => {
 						duration: 0.5,
 						delay: 0.2,
 						ease: "easeInOut",
-					}}>
-					<PrismicNextImage field={slice.primary.image} sizes="33vw" className="aspect-video md:aspect-auto md:h-full lg:h-screen object-cover" imgixParams={{ fit: "crop", auto: "format" }} />
+					}}
+				>
+					{imageSrc && (
+						<img
+							src={imageSrc}
+							alt=""
+							className="aspect-video md:aspect-auto md:h-full lg:h-screen object-cover w-full"
+						/>
+					)}
 				</motion.div>
-				<div className="lg:pt-[96px] md:row-span-2 lg:col-span-2 flex flex-col justify-center gap-8 px-6 md:px-12 py-32 md:py-0  max-w-4xl mx-auto">
-					<motion.div ref={heading2} style={{ opacity: scrollForH2 }}>
+
+				{/* CONTENT */}
+				<div className="lg:pt-[96px] md:row-span-2 lg:col-span-2 flex flex-col justify-center gap-8 px-6 md:px-12 py-32 md:py-0 max-w-4xl mx-auto">
+
+					<motion.div ref={heading2}>
 						<PrismicRichText field={slice.primary.subhead} components={components} />
 					</motion.div>
-					<motion.div ref={heading3} style={{ opacity: scrollForH3 }}>
+
+					<motion.div ref={heading3} style={{ scale: scaleH3Progress }}>
 						<PrismicRichText field={slice.primary.heading} components={components} />
 					</motion.div>
-					<motion.div ref={body} style={{ opacity: scrollForBody }}>
+
+					<motion.div ref={body}>
 						<PrismicRichText field={slice.primary.body} components={components} />
 					</motion.div>
 
+					{/* CTA BUTTONS */}
 					<div className="flex gap-8 flex-col items-center md:flex-row">
-						{/*  CTA buttons */}
 						{slice.items.map(({ button_link, button_text }) => (
-							<motion.div key={button_text} ref={button} style={{ opacity: scrollForButton, scale: scaleButtonProgress }}>
-								<Button field={button_link} key={button_text} className="bg-white mt-6">
+							<motion.div
+								key={button_text}
+								ref={button}
+								style={{ scale: scaleButtonProgress }}
+							>
+								<Button
+									field={button_link}
+									className="bg-white mt-6"
+								>
 									{button_text}
 								</Button>
 							</motion.div>
 						))}
 					</div>
+
 				</div>
 			</div>
 		</section>

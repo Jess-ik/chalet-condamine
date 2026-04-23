@@ -19,10 +19,18 @@
             "placeholder": ""
           }
         },
-        "background": {
+        "background_winter": {
           "type": "Image",
           "config": {
-            "label": "Background",
+            "label": "Background Winter",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "background_summer": {
+          "type": "Image",
+          "config": {
+            "label": "Background Summer",
             "constraint": {},
             "thumbnails": []
           }

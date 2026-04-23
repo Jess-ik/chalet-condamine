@@ -320,14 +320,24 @@ export type AllDocumentTypes =
  */
 export interface CtASliceDefaultPrimary {
   /**
-   * Image field in *CtA → Primary*
+   * Image Winter field in *CtA → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: ct_a.primary.image
+   * - **API ID Path**: ct_a.primary.image_winter
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.ImageField<never>;
+  image_winter: prismic.ImageField<never>;
+
+  /**
+   * Image Summer field in *CtA → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: ct_a.primary.image_summer
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image_summer: prismic.ImageField<never>;
 
   /**
    * Subhead field in *CtA → Primary*
@@ -680,14 +690,24 @@ export interface HeroSliceDefaultPrimary {
   anchor_id: prismic.KeyTextField;
 
   /**
-   * Background field in *Hero → Primary*
+   * Background Winter field in *Hero → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.background
+   * - **API ID Path**: hero.primary.background_winter
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  background: prismic.ImageField<never>;
+  background_winter: prismic.ImageField<never>;
+
+  /**
+   * Background Summer field in *Hero → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.primary.background_summer
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background_summer: prismic.ImageField<never>;
 
   /**
    * Heading2 field in *Hero → Primary*
@@ -1054,14 +1074,24 @@ export type SectionHeadSlice = prismic.SharedSlice<
  */
 export interface TextImageSliceDefaultPrimary {
   /**
-   * Image field in *TextImage → Primary*
+   * Image Winter field in *TextImage → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: text_image.primary.image
+   * - **API ID Path**: text_image.primary.image_winter
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.ImageField<never>;
+  image_winter: prismic.ImageField<never>;
+
+  /**
+   * Image Summer field in *TextImage → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_image.primary.image_summer
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image_summer: prismic.ImageField<never>;
 
   /**
    * Body field in *TextImage → Primary*
@@ -1102,14 +1132,24 @@ export interface TextImageSliceImageRightPrimary {
   body: prismic.RichTextField;
 
   /**
-   * image field in *TextImage → Primary*
+   * image Winter field in *TextImage → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: text_image.primary.image
+   * - **API ID Path**: text_image.primary.image_winter
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.ImageField<never>;
+  image_winter: prismic.ImageField<never>;
+
+  /**
+   * Image Summer field in *TextImage → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: text_image.primary.image_summer
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image_summer: prismic.ImageField<never>;
 }
 
 /**

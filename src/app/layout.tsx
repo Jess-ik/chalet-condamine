@@ -29,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: settings.data.site_title || "Chalet Condamin",
     description: settings.data.meta_description || "Découvrez l'authenticité de Vallouise et reservez votre séjour dans notre appartement de 50m2 avec jardin et voûtes d'origine.",
     openGraph: {
-      images: [settings.data.og_image.url || ""],
+      images: [settings.data.og_image?.url || ""],
     },
   };
 }

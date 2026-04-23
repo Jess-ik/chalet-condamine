@@ -12,10 +12,18 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "image": {
+        "image_winter": {
           "type": "Image",
           "config": {
-            "label": "Image",
+            "label": "Image Winter",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image_summer": {
+          "type": "Image",
+          "config": {
+            "label": "Image Summer",
             "constraint": {},
             "thumbnails": []
           }
@@ -49,10 +57,18 @@
             "single": "paragraph,strong,em"
           }
         },
-        "image": {
+        "image_winter": {
           "type": "Image",
           "config": {
-            "label": "image",
+            "label": "image Winter",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image_summer": {
+          "type": "Image",
+          "config": {
+            "label": "Image Summer",
             "constraint": {},
             "thumbnails": []
           }
